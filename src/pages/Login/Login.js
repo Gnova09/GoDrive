@@ -8,15 +8,16 @@ export const Login = () => {
 <div className="col-6">
       <div className="d-flex justify-content-center align-items-center h-100 w-100 position-relative">
         <img
-          src="/assets/RentalCarLG.jpg"
+          src="/assets/Portada.jpg"
           width="5885"
           height="3789"
           alt="logo"
           className="img-fluid w-100 h-100"
         />
-        <div className="position-absolute w-auto d-flex flex-column align-items-center">
-          <p className="text-white">Nice to see you again</p>
-          <h1 className="font-weight-bold display-4 text-white">Welcome Back</h1>
+         <div className="position-absolute w-auto d-flex flex-column align-items-center">
+            <h1 className="font-weight-bold display-2 text-white" style={{ fontFamily: 'Lobster, cursive' }}>
+                Bienvenido
+            </h1>
         </div>
       </div>
     </div>

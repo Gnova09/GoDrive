@@ -5,14 +5,16 @@ function LoginForm({ setEmail, setPass, handleSubmitLogin }) {
     <form className="mb-4">
       <div className="mb-3">
         <label htmlFor="email" className="form-label">
-          Correo Electronico
+          Correo Electrónico
         </label>
         <input
           type="email"
           onChange={(e) => setEmail(e.target.value)}
           id="email"
           className="form-control"
-          placeholder="name@company.com"
+          placeholder="Ingrese su correo electrónico" 
+          maxLength={150}
+          minLength={6}         
           required
         />
       </div>
@@ -25,8 +27,10 @@ function LoginForm({ setEmail, setPass, handleSubmitLogin }) {
           type="password"
           onChange={(e) => setPass(e.target.value)}
           id="password"
-          placeholder="••••••••"
+          placeholder="Ingrese su contraseña"
           className="form-control"
+          minLength={6}
+          maxLength={32}
           required
         />
       </div>
@@ -44,7 +48,7 @@ function LoginForm({ setEmail, setPass, handleSubmitLogin }) {
           </label>
         </div>
         <a href="/" className="text-primary">
-          Olvido su contrasena?
+          Has olvidado la contraseña?
         </a>
       </div>
 
@@ -57,9 +61,9 @@ function LoginForm({ setEmail, setPass, handleSubmitLogin }) {
       </button>
 
       <p className="text-center mt-3">
-        No tiene una cuenta todavia?{' '}
+       ¿Eres nuevo en GoDrive?{' '}
         <a href="/pages/register" className="text-primary">
-          Registrarse
+          Crear una cuenta
         </a>
       </p>
     </form>

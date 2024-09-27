@@ -1,6 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import useAppContext from '../context/context';
+import { useNavigate } from 'react-router-dom';
 
-function LoginForm({ setEmail, setPass, handleSubmitLogin }) {
+function LoginForm() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("")
+    const [pass, setPass] = useState("")
+
+    const {  setIslogin,  toastCall } = useAppContext()
+    
+
+    const users = {
+        email: "Georges@gmail.com",
+        pass: "1234567"
+      }
+      
+
+    //funcion del boton de login
+    const handleSubmitLogin = () =>{
+      //TODO: aqui va el fetch al aAPI DEL BACKEND
+      
+      if(users.email === email && users.pass === pass){
+        setIslogin(true)
+        toastCall("Logged")
+        navigate("/home")
+      }else{
+        toastCall("Error en el login")
+      }
+      console.log({
+        email, pass
+      })
+    }
+
   return (
     <form className="mb-4">
       <div className="mb-3">
@@ -13,7 +44,7 @@ function LoginForm({ setEmail, setPass, handleSubmitLogin }) {
           id="email"
           className="form-control"
           placeholder="Ingrese su correo electrónico" 
-          maxLength={150}
+          maxLength={100}
           minLength={6}         
           required
         />
@@ -62,7 +93,7 @@ function LoginForm({ setEmail, setPass, handleSubmitLogin }) {
 
       <p className="text-center mt-3">
        ¿Eres nuevo en GoDrive?{' '}
-        <a href="/pages/register" className="text-primary">
+        <a href="/register" className="text-primary">
           Crear una cuenta
         </a>
       </p>

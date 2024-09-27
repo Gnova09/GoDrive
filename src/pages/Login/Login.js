@@ -20,7 +20,7 @@ export const Login = () => {
             Tu navegador no soporta el video.
           </video>
           <div className="position-absolute left-20 top-8 w-20 align-items-center">
-            <h1 className="font-weight-bold display-2 text-white" style={{ fontFamily: 'Lobster, cursive' }}>
+            <h1 className="font-weight-bold  text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white" style={{ fontFamily: 'Lobster, cursive' }}>
               Bienvenido
             </h1>
           </div>

@@ -28,7 +28,7 @@ export const Login = () => {
           <span className="h4 font-weight-bold">GoDrive</span>
         </a>
 
-        <div className="w-100 bg-white rounded-lg shadow p-4">
+        <div className="w-100 bg-white bo rounded-lg shadow p-4">
           <div className="p-4 space-y-4">
             <h1 className="h5 font-weight-bold text-dark">
               Iniciar sesion en tu cuenta

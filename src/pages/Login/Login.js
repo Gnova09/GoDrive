@@ -15,6 +15,8 @@ export const Login = () => {
             autoPlay
             loop
             muted
+            style={{ filter: 'blur(3px)' }} // Aquí añadí el filtro de difuminado para que se resalte mas el texto, que el video
+
           >
             <source src="/assets/fondo.mp4" type="video/mp4" />
             Tu navegador no soporta el video.

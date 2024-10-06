@@ -5,8 +5,8 @@ export const Login = () => {
 
 
   return (
-    <div className="d-flex min-vh-100 justify-center flex-row">
 
+    <div className="d-flex min-vh-100 justify-center flex-row">
       <div className="w-full">
         <div className="d-flex justify-content-center align-items-center h-100 w-100 position-relative">
           {/* Video de fondo */}
@@ -15,7 +15,7 @@ export const Login = () => {
             autoPlay
             loop
             muted
-            style={{ filter: 'blur(3px)' }} // Aquí añadí el filtro de difuminado para que se resalte mas el texto, que el video
+            style={{ filter: 'blur(4px)' }} // Aquí añadí el filtro de difuminado para que se resalte mas el texto, que el video
 
           >
             <source src="/assets/fondo.mp4" type="video/mp4" />
@@ -38,7 +38,7 @@ export const Login = () => {
             <div className='d-flex  align-items-center justify-content-center '>
 
               <a href="/" className="d-flex align-items-center mb-4 text-dark">
-                <img width={32} height={32} className="me-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" />
+                <img width={100} height={100} className="me-2" src="/assets/logo.png" alt="Logo GoDrive Inicio de sesión" />
                 <span className="h4 font-weight-bold">GoDrive</span>
               </a>
             </div>
@@ -50,8 +50,6 @@ export const Login = () => {
             </div>
           </div>
         </div>
-
-        
       </section>
     </div>
   )

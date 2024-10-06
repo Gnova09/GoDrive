@@ -34,9 +34,10 @@ function LoginForm() {
 
   return (
 
-    <form className="mb-4">
+    <form className="mb-4" style={{ height: '330px' }}>    {/* Aquí añadí los estilos para definir la altura del login */}
   <div className="mb-3">
-    <label htmlFor="email" className="form-label">
+    <label htmlFor="email" className="form-label">       
+
       Correo Electrónico
     </label>
     <input
@@ -73,16 +74,17 @@ function LoginForm() {
       <hr 
         className="flex-fill" 
         style={{ 
-          border: '1px solid #ccc', 
+          border: '1px solid #8c8c8c', 
           height: '1px',
           flexGrow: 1,
         }} 
       />
+      
       <span className="mx-2">O inicia sesión con</span>
       <hr 
         className="flex-fill" 
         style={{ 
-          border: '1px solid #ccc',
+          border: '1px solid #8c8c8c',
           height: '1px',
           flexGrow: 1,
         }} 

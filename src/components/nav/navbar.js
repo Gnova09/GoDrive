@@ -5,7 +5,7 @@ const Navbar = () => {
         <nav class="bg-[#F9F7F7] border-gray-200 dark:bg-gray-900">
             <div class="max-w-screen-xl h-20 flex flex-wrap items-center justify-between mx-auto ">
                 <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src='/assets/logo.png' class="h-20" alt="Flowbite Logo" />
+                    <img src='/assets/logo.png' class="h-20" alt="Logo de GoDrive" />
                     <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">GoDrive</span>
 
                 </a>
@@ -40,4 +40,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Navbar;

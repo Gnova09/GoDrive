@@ -6,6 +6,8 @@ import { Home } from './pages/home/Home';
 import { Register } from './pages/Register/Register';
 import About from './pages/about/About';
 import Navbar from './components/nav/navbar';
+import FooterAll from './components/footer';
+import Details from './pages/details/detalles';
 
 function App() {
   // Hook para obtener la ruta actual
@@ -21,7 +23,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
+        <Route path="/details" element={<Details />} />
       </Routes>
+      {location.pathname == '/login' || location.pathname == '/register' ? '': <FooterAll />}
     </>
   );
 }

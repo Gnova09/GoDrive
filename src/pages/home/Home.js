@@ -39,12 +39,12 @@ export const Home = () => {
     { 
       nombre: 'Ford Focus 2018',
       precio: 35,
-      img: "/assets/carsImgenes/Ford focus 2018/focus Main.webp"
+      img: "/assets/carsImgenes/Ford focus 2018/Focus Main.webp"
     },
     { 
       nombre: 'Volkswagen Golf 2022',
       precio: 60,
-      img: "/assets/carsImgenes/Volkswagen golf 2022/golf Main.webp"
+      img: "/assets/carsImgenes/Volkswagen golf 2022/Golf Main.webp"
     },
     { 
       nombre: 'Mazda 3 2019',
@@ -54,7 +54,7 @@ export const Home = () => {
     { 
       nombre: 'Honda Fit 2018',
       precio: 35,
-      img: "/assets/carsImgenes/Honda fit 2018/fit Main.webp"
+      img: "/assets/carsImgenes/Honda fit 2018/Fit Main.webp"
     },
     { 
       nombre: 'Lexus CT 200H 2017',
@@ -69,7 +69,7 @@ export const Home = () => {
     { 
       nombre: 'Mercedez Benz GLE 350 2020',
       precio: 145,
-      img: "/assets/carsImgenes/Mercedez Benz GLE 350 2020/gle 350 Main.webp"
+      img: "/assets/carsImgenes/Mercedez Benz GLE 350 2020/GLE 350 Main.webp"
     },
     { 
       nombre: 'Audi Q7 2021',
@@ -89,7 +89,7 @@ export const Home = () => {
     { 
       nombre: 'Mazda CX90 2024',
       precio: 200,
-      img: "/assets/carsImgenes/Mazda CX90 2024/CX 90 main.webp"
+      img: "/assets/carsImgenes/Mazda CX90 2024/CX 90 Main.webp"
     },
     { 
       nombre: 'Toyota Land Cruiser Prado 2024',
@@ -99,62 +99,62 @@ export const Home = () => {
     { 
       nombre: 'Toyota Tundra 2020',
       precio: 110,
-      img: "/assets/carsImgenes/Toyota tundra 2020/tundra main.webp"
+      img: "/assets/carsImgenes/Toyota Tundra 2020/Tundra Main.webp"
     },
     { 
       nombre: 'Ford Ranger 2022',
       precio: 85,
-      img: "/assets/carsImgenes/Ford Ranger 2022/Ranger main.webp"
+      img: "/assets/carsImgenes/Ford Ranger 2022/Ranger Main.webp"
     },
     { 
       nombre: 'Jeep Gladiator 2022',
       precio: 95,
-      img: "/assets/carsImgenes/Jeep Gladiator 2022/Gladiator main.webp"
+      img: "/assets/carsImgenes/Jeep Gladiator 2022/Gladiator Main.webp"
     },
     { 
       nombre: 'Nissan Frontier 2021',
       precio: 80,
-      img: "/assets/carsImgenes/Nissan Frontier 2021/Frontier main.webp"
+      img: "/assets/carsImgenes/Nissan Frontier 2021/Frontier Main.webp"
     },
     { 
       nombre: 'Ford Raptor 2022',
       precio: 150,
-      img: "/assets/carsImgenes/Ford Raptor 2022/raptor main.webp"
+      img: "/assets/carsImgenes/Ford Raptor 2022/raptor Main.webp"
     },
     { 
       nombre: 'Ram 1500 2023',
       precio: 180,
-      img: "/assets/carsImgenes/Ram 1500 2023/1500 main.webp"
+      img: "/assets/carsImgenes/Ram 1500 2023/1500 Main.webp"
     },
     { 
       nombre: 'Kia Stinger 2022',
       precio: 220,
-      img: "/assets/carsImgenes/Kia Stinger 2022/stinger main.webp"
+      img: "/assets/carsImgenes/Kia Stinger 2022/Stinger Main.webp"
     },
     { 
       nombre: 'Ford Mustang GT 2021',
       precio: 205,
-      img: "/assets/carsImgenes/Ford Mustang GT 2021/GT main.webp"
+      img: "/assets/carsImgenes/Ford Mustang GT 2021/GT Main.webp"
     },
     { 
       nombre: 'Lexus LC 500 2021',
       precio: 450,
-      img: "/assets/carsImgenes/Lexus LC 500 2021/lc 500 main.webp"
+      img: "/assets/carsImgenes/Lexus LC 500 2021/LC 500 Main.webp"
     },
     { 
       nombre: 'Chevrolet Corvette 2020',
       precio: 500,
-      img: "/assets/carsImgenes/Chevrolet Corvette 2020/corvette main.webp"
+      img: "/assets/carsImgenes/Chevrolet Corvette 2020/Corvette Main.webp"
     },
     { 
       nombre: 'Chevrolet Camaro 2022',
       precio: 250,
-      img: "/assets/carsImgenes/Chevrolet Camaro 2022/camaro main.webp"
+      img: "/assets/carsImgenes/Chevrolet Camaro 2022/Camaro Main.webp"
     },
     { 
       nombre: 'Porsche Cayman 2016',
       precio: 220,
-      img: "/assets/carsImgenes/Porsche Cayman 2016/cayman main.webp"
+      img: "/assets/carsImgenes/Porsche Cayman 2016/Cayman Main.webp"
     },
   ]
 
@@ -172,7 +172,7 @@ export const Home = () => {
 />
 <div className="relative">
   <img 
-    src="/assets/carsImgenes/portada.webp" 
+    src="/assets/carsImgenes/Portada.webp" 
     className='w-full h-screen object-cover' 
     alt="imagen general de un vehiculo"
   />

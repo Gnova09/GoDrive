@@ -59,7 +59,7 @@ export const Home = () => {
     { 
       nombre: 'Lexus CT 200H 2017',
       precio: 40,
-      img: "/assets/carsImgenes/Lexus CT200H 2017/CT 200H Main.webp"
+      img: "/assets/carsImgenes/Lexus CT200H 2017/Lexus CT 200H Main.webp"
     },
     { 
       nombre: 'Nissan Note 2016',
@@ -119,7 +119,7 @@ export const Home = () => {
     { 
       nombre: 'Ford Raptor 2022',
       precio: 150,
-      img: "/assets/carsImgenes/Ford Raptor 2022/raptor Main.webp"
+      img: "/assets/carsImgenes/Ford Raptor 2022/Raptor Main.webp"
     },
     { 
       nombre: 'Ram 1500 2023',

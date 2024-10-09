@@ -10,14 +10,14 @@ const Features = () => {
       <div className="grid grid-cols-3 gap-6 text-center">
         {/* Primer ítem */}
         <div className="flex flex-col items-center">
-          <img src="ruta-del-icono-1" alt="Seguridad" className="w-12 h-12 mb-2" />
+          <img src="/public/assets/carsImgenes/Escudo.png" alt="Seguridad" className="w-12 h-12 mb-2"/>
           <h3 className="text-blue-600 font-bold">SEGURIDAD</h3>
           <p>Sus datos financieros no se comparten con el vendedor.</p>
         </div>
 
         {/* Segundo ítem */}
         <div className="flex flex-col items-center">
-          <img src="ruta-del-icono-2" alt="Protección" className="w-12 h-12 mb-2" />
+          <img src="/public/assets/carsImgenes/Portada.webp" alt="Protección" className="w-12 h-12 mb-2" />
           <h3 className="text-blue-600 font-bold">PROTECCIÓN</h3>
           <p>Sus pagos están protegidos por el programa de protección del comprador.</p>
         </div>

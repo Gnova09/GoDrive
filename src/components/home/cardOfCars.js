@@ -9,7 +9,7 @@ const CardOfCars = ({nombre, precio, img}) => {
                     <h5 class="text-xl font-semibold tracking-tight text-gray-900">{nombre}</h5>
 
                     <div class="flex items-center justify-between mt-2">
-                        <span class="text-lg font-bold text-blue-600">DOP {precio}</span>
+                        <span class="text-lg font-bold text-blue-600">USD {precio}</span>
                         <a href="#" class="text-white bg-orange-500 hover:bg-orange-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Ver Detalles
                         </a>

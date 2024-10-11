@@ -59,7 +59,7 @@ export const Home = () => {
     { 
       nombre: 'Lexus CT 200H 2017',
       precio: 40,
-      img: "/assets/carsImgenes/Lexus CT200H 2017/Lexus CT 200H Main.webp"
+      img: "/assets/carsImgenes/Lexus CT200H 2017/Lexus Main.webp"
     },
     { 
       nombre: 'Nissan Note 2016',
@@ -163,19 +163,14 @@ export const Home = () => {
 
       <div className='flex h-full  justify-center items-center'>
       {/* Imagen de portada  */}
-      <img 
-  src="/assets/carsImgenes/portada.webp" 
-  className='w-full h-screen object-cove'  
-  alt="imagen general de un vehiculo" 
-  width="900" 
-  height="900"
-/>
+
 <div className="relative">
   <img 
     src="/assets/carsImgenes/Portada.webp" 
     className='w-full h-screen object-cover' 
     alt="imagen general de un vehiculo"
   />
+
   <div className="absolute inset-0 flex items-center justify-start pl-10 z-10">
     <h1 className="text-white text-4xl font-bold">¡Bienvenido a tu aventura!</h1>
   </div>

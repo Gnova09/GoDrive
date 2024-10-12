@@ -166,7 +166,7 @@ export const Home = () => {
 
 <div className="relative">
   <img 
-    src="/assets/carsImgenes/Portada.webp" 
+    src="/assets/carsImgenes/Portada.jpg" 
     className='w-full h-screen object-cover' 
     alt="imagen general de un vehiculo"
   />

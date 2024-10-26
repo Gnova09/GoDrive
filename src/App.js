@@ -8,6 +8,7 @@ import About from './pages/about/About';
 import Navbar from './components/nav/navbar';
 import FooterAll from './components/footer';
 import Details from './pages/details/detalles';
+import Servicios from './pages/servicios/Servicios';
 
 function App() {
   // Hook para obtener la ruta actual
@@ -23,6 +24,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
+        <Route path="/servicios" element={<Servicios />} />
         <Route path="/details" element={<Details />} />
       </Routes>
       {location.pathname == '/login' || location.pathname == '/register' ? '': <FooterAll />}

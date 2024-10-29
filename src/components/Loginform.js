@@ -23,7 +23,7 @@ function LoginForm() {
       if(users.email === email && users.pass === pass){
         setIslogin(true)
         toastCall("Logged")
-        navigate("/home")
+        navigate("/")
       }else{
         toastCall("Error en el login")
       }

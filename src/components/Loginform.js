@@ -92,7 +92,7 @@ function LoginForm() {
     </div>
   </div>
 
- // AGREGAR LOS BOTONES ACA:
+ 
 
 
   <div className="d-flex justify-content-between align-items-center mb-3">

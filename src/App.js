@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       {/* Condiciona que el Navbar no se muestre en la ruta de login */}
-      {location.pathname == '/login' || location.pathname == '/register' ? '': <Navbar />}
+      {location.pathname === '/login' || location.pathname === '/register' ? '': <Navbar />}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -27,7 +27,7 @@ function App() {
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/details" element={<Details />} />
       </Routes>
-      {location.pathname == '/login' || location.pathname == '/register' ? '': <FooterAll />}
+      {location.pathname === '/login' || location.pathname === '/register' ? '': <FooterAll />}
     </>
   );
 }

@@ -12,6 +12,21 @@ export const AppContextProvider = ({ children }) => {
     //TOAST NOTIFICATION
     const [showToast, setShowToast] = useState(false);
     const [textToast, setTextToast] = useState("");
+    const [liscart, setLiscart] = useState([ { 
+        nombre: 'Toyota Corolla 2020',
+        precio: 50,
+        img: "/assets/carsImgenes/Toyota corolla 2020/Corolla Main.webp",
+        desde: '01/02/2024',
+        hasta: '10/02/2024',
+      },
+      { 
+        nombre: 'Honda Civic 2021',
+        precio: 55,
+        img: "/assets/carsImgenes/Honda civic 2021/Civic Main.webp",
+        desde: '01/02/2024',
+        hasta: '10/02/2024',
+      },]);
+
 
     const [islogin, setIslogin] = useState(false);
     const [IsOpenSidebar, setIsOpenSidebar] = useState();
@@ -38,7 +53,7 @@ export const AppContextProvider = ({ children }) => {
 
     const verifyLogin = () => {
 
-            
+
         if (islogin) {
             window.location.href = "/pages/home"
         } else {
@@ -47,7 +62,7 @@ export const AppContextProvider = ({ children }) => {
 
     }
 
-   
+
     const values = (
         {
             // Funciones que son exportadas para manejo externo.
@@ -61,10 +76,11 @@ export const AppContextProvider = ({ children }) => {
             user, setuser,
             verifyLogin,
             toastCall,
-            
-                showToast, setShowToast,
-                textToast, setTextToast
-            
+            liscart, setLiscart,
+
+            showToast, setShowToast,
+            textToast, setTextToast
+
 
         });   // States que serán visibles en el contexto.
 

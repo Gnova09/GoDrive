@@ -18,6 +18,7 @@ const CardOfCars = ({ nombre, precio, img }) => {
           >
             Ver Detalles
           </a>
+          <img className='cursor-pointer' src="assets\icons\carrito\anadir-al-carrito.png" width='30' onClick={()=>console.log('Imagen clicked')} />
         </div>
       </div>
     </div>

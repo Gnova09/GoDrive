@@ -1,43 +1,77 @@
-import React from 'react'
+import React, {useState} from 'react';
+import ShoppingCart from '../shoppingCart/shoppingCart';
 
 const Navbar = () => {
-    return (
-        <nav class="bg-[#F9F7F7] border-gray-200 dark:bg-gray-900">
-            <div class="max-w-screen-xl h-20 flex flex-wrap items-center justify-between mx-auto ">
-                <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src='/assets/logo.png' class="h-20" alt="Logo de GoDrive" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">GoDrive</span>
+    const [showCart, setShowCart] = useState(false)
 
+
+    return (
+        <nav className="bg-[#F9F7F7] border-gray-200">
+            <div className="max-w-screen-xl h-20 flex flex-wrap items-center justify-between mx-auto">
+                <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src="/assets/logo.png" className="h-20" alt="Logo de GoDrive" />
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-gray-900">GoDrive</span>
                 </a>
-                <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+                <button
+                    data-collapse-toggle="navbar-default"
+                    type="button"
+                    className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    aria-controls="navbar-default"
+                    aria-expanded="false"
+                >
+                    <span className="sr-only">Open main menu</span>
+                    <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 17 14"
+                    >
+                        <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M1 1h15M1 7h15M1 13h15"
+                        />
                     </svg>
                 </button>
-                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-                    <ul class="font-medium flex flex-col md:p-0   rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0   dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul className="font-medium flex flex-col md:p-0 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0">
                         <li>
-                            <a href="/" class="block py-2 px-3 text-gray-900 bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Inicio</a>
+                            <a href="/" className="block py-2 px-3 text-gray-900 bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0" aria-current="page">
+                                Inicio
+                            </a>
                         </li>
                         <li>
-                            <a href="/about" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Nosotros</a>
+                            <a href="/about" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+                                Nosotros
+                            </a>
                         </li>
                         <li>
-                            <a href="servicios" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Servicios</a>
+                            <a href="servicios" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+                                Servicios
+                            </a>
                         </li>
                         <li>
-                            <a href="/register" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Registrar</a>
+                            <a href="/register" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+                                Registrar
+                            </a>
                         </li>
                         <li>
-                            <a href="/login" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</a>
+                            <a href="/login" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+                                Login
+                            </a>
                         </li>
                     </ul>
                 </div>
+                <div>
+                    <img onClick={()=>setShowCart(!showCart)} src="assets/icons/carrito/carrito-de-compras.png" width="30" className="white cursor-pointer" />
+                </div>
             </div>
+            {showCart ? <ShoppingCart showCart ={setShowCart} />: ""}
         </nav>
-
-    )
-}
+    );
+};
 
 export default Navbar;

@@ -1,6 +1,7 @@
 import React from 'react'
 import CardOfCars from '../../components/home/cardOfCars'
 import Features from '../../components/home/feature'
+import Mapa from '../../components/maps/mapa'
 
 
 export const Home = () => {
@@ -188,6 +189,8 @@ export const Home = () => {
       </div>
 
       <Features />
+
+      <Mapa />
 
       
     </div>

@@ -10,7 +10,12 @@ export const Home = () => {
     { 
       nombre: 'Toyota Corolla 2020',
       precio: 50,
-      img: "/assets/carsImgenes/Toyota corolla 2020/Corolla Main.webp"
+      img: "/assets/carsImgenes/Toyota corolla 2020/Corolla Main.webp",
+      modelo:"Corolla",
+      marca: "Toyota",
+      anio:"2020",
+      combustible:"Gasolina",
+      descripcion:"texto de ejemplo"
     },
     { 
       nombre: 'Honda Civic 2021',

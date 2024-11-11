@@ -8,7 +8,7 @@ const Navbar = () => {
     return (
         <nav className="bg-[#F9F7F7] border-gray-200">
             <div className="max-w-screen-xl h-20 flex flex-wrap items-center justify-between mx-auto">
-                <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
+                <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="/assets/logo.png" className="h-20" alt="Logo de GoDrive" />
                     <span className="self-center text-2xl font-semibold whitespace-nowrap text-gray-900">GoDrive</span>
                 </a>

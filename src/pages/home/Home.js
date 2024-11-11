@@ -1,7 +1,7 @@
 import React from 'react'
 import CardOfCars from '../../components/home/cardOfCars'
 import Features from '../../components/home/feature'
-
+import Datepicker from '../../components/Datepicker/datepicker'
 
 export const Home = () => {
 
@@ -188,6 +188,9 @@ export const Home = () => {
       </div>
 
       <Features />
+
+      <Datepicker />
+
 
       
     </div>

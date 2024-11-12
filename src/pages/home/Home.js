@@ -65,7 +65,7 @@ export const Home = () => {
     { 
       nombre: 'Lexus CT 200H 2017',
       precio: 40,
-      img: "/assets/carsImgenes/Lexus CT200H 2017/Lexus Main.webp"
+      img: "/assets/carsImgenes/Lexus CT200H 2017/Lexus CT200h Main1.webp"
     },
     { 
       nombre: 'Nissan Note 2016',

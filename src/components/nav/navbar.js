@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import ShoppingCart from '../shoppingCart/shoppingCart';
+import useAppContext from '../../context/context';
 
 const Navbar = () => {
     const [showCart, setShowCart] = useState(false)
+    const { islogin } = useAppContext()
 
 
     return (
@@ -53,23 +55,34 @@ const Navbar = () => {
                                 Servicios
                             </a>
                         </li>
-                        <li>
-                            <a href="/register" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
-                                Registrar
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/login" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
-                                Login
-                            </a>
-                        </li>
+                        {islogin ?
+                            <>
+                                <li>
+                                    <a href="/register" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+                                        Registrar
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/login" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+                                        Login
+                                    </a>
+                                </li>
+                            </>
+                            :
+                            ''
+                        }
+
                     </ul>
                 </div>
                 <div>
-                    <img onClick={()=>setShowCart(!showCart)} src="assets/icons/carrito/carrito-de-compras.png" width="30" className="white cursor-pointer" />
+                    <img onClick={() => setShowCart(!showCart)} src="assets/icons/carrito/carrito-de-compras.png" width="30" className="white cursor-pointer" />
                 </div>
             </div>
-            {showCart ? <ShoppingCart showCart ={setShowCart} />: ""}
+            {showCart ? <ShoppingCart showCart={setShowCart} /> : ""}
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="7" r="5" fill="#ccc" />
+                <path d="M12 14c-5 0-9 3-9 7v1h18v-1c0-4-4-7-9-7z" fill="#ccc" />
+            </svg>
         </nav>
     );
 };

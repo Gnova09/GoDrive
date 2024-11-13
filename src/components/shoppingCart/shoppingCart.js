@@ -1,11 +1,32 @@
 import React from 'react'
 import useAppContext from '../../context/context'
+import { useNavigate } from 'react-router-dom';
 
 const ShoppingCart = ({ showCart }) => {
 
-  const { setIslogin, toastCall, liscart, setLiscart } = useAppContext()
+  const { verifyLogin,islogin, toastCall, liscart, setLiscart } = useAppContext()
+  const navigate = useNavigate();
+
+  const handleDeleteCar = (nombre) =>{
+    const listOfCarts = liscart.filter(car => car.nombre !== nombre )
+
+    setLiscart(listOfCarts)
+
+    toastCall(`Carro ${nombre} Eliminado`)
+  }
+
+  const handlePago = ()=> {
+    if(islogin ){
+      toastCall('Le llegara el Link de pago y la factura via correo')
+
+    }else{
+      toastCall('Debe iniciar sesion')
+      navigate("/login")
+
+    }
+  }
   return (
-    <div className=' absolute z-20 h-full top-0 right-0  w-1/3 bg-slate-200 rounded '>
+    <div className=' absolute z-20 scroll-m-1 h-full top-0 right-0  w-1/3 bg-slate-200 rounded '>
       <div className=' justify-center p-5 flex flex-row'>
         <h1 className='p-0 text-center font-bold text-2xl'>
           Carro de compra
@@ -45,7 +66,7 @@ const ShoppingCart = ({ showCart }) => {
                   </button>
 
                 </div>
-                <button type="button"  class="text-black flex justify-center items-center bg-red-600 hover:bg-gray-200 hover:text-gray-900 rounded text-sm w-8  ms-auto  dark:hover:bg-gray-600 dark:hover:text-white" >
+                <button type="button" onClick={()=>{handleDeleteCar(nombre)}} class="text-black flex justify-center items-center bg-red-600 hover:bg-gray-200 hover:text-gray-900 rounded text-sm w-8  ms-auto  dark:hover:bg-gray-600 dark:hover:text-white" >
                   <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
                   </svg>
@@ -58,7 +79,7 @@ const ShoppingCart = ({ showCart }) => {
 
       </div>
       <div className='w-full flex justify-center items-center'>
-        <button type="button" class="focus:outline-none text-white font-semibold   bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300  rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Procceder al pago</button>
+        <button type="button" onClick={()=>handlePago()} class="focus:outline-none text-white font-semibold   bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300  rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Procceder al pago</button>
       </div>
 
 

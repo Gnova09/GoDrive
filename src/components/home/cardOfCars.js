@@ -1,6 +1,26 @@
 import React from "react";
+import useAppContext from "../../context/context";
 
 const CardOfCars = ({ nombre, precio, img }) => {
+
+  const{liscart,setLiscart, toastCall}= useAppContext()
+  const handleOnClickCart = () =>{
+    const listOfCarts = [
+      ...liscart, 
+      {
+        nombre: nombre,
+        precio: precio,
+        img: img,
+        desde: '01/02/2024',
+        hasta: '10/02/2024',
+      }
+    ]
+
+    setLiscart(listOfCarts)
+
+    toastCall(`Vehiculo agregado al carrito`)
+  }
+
   return (
     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
       <img class="w-full" src={img} alt={`${nombre} imagen`} />
@@ -18,7 +38,7 @@ const CardOfCars = ({ nombre, precio, img }) => {
           >
             Ver Detalles
           </a>
-          <img className='cursor-pointer' src="assets\icons\carrito\anadir-al-carrito.png" width='30' onClick={()=>console.log('Imagen clicked')} />
+          <img className='cursor-pointer' src="assets\icons\carrito\anadir-al-carrito.png" width='30' onClick={()=>handleOnClickCart()} />
         </div>
       </div>
     </div>

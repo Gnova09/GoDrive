@@ -13,6 +13,8 @@ import Servicios from './pages/servicios/Servicios';
 function App() {
   // Hook para obtener la ruta actual
   const location = useLocation();
+  
+  
 
   return (
     <>
@@ -21,7 +23,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} /> 
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="/servicios" element={<Servicios />} />

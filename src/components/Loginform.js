@@ -7,29 +7,25 @@ function LoginForm() {
   const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
 
-    const {  setIslogin,  toastCall } = useAppContext()
+    const {  setIslogin,  toastCall, users } = useAppContext()
     
-
-    const users = {
-        email: "Georges@gmail.com",
-        pass: "1234567"
-      }
-      
 
     //funcion del boton de login
     const handleSubmitLogin = () =>{
       //TODO: aqui va el fetch al aAPI DEL BACKEND
-      
-      if(users.email === email && users.pass === pass){
-        setIslogin(true)
-        toastCall("Logged")
-        navigate("/")
-      }else{
-        toastCall("Error en el login")
-      }
-      console.log({
-        email, pass
+      users.map(user => {
+        if(user.email === email && user.pass === pass){
+          setIslogin(true)
+          toastCall("Logged")
+          navigate("/")
+        }else{
+          toastCall("Error en el login")
+        }
+        console.log({
+          email, pass
+        })
       })
+     
     }
 
   return (

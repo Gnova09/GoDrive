@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import useAppContext from '../../context/context';
 
 const Details = () => {
-  const car = {
+  /* const car = {
     nombre: 'Toyota Corolla 2020',
     precio: 50,
     img: [
@@ -20,13 +21,40 @@ const Details = () => {
     combustible: 'gasolina',
     descripcion:
       'El Toyota Corolla 2020 es un sedán compacto conocido por su confiabilidad, eficiencia de combustible y tecnología de seguridad avanzada. Con un diseño moderno y un interior cómodo, ofrece una experiencia de conducción suave y económica, ideal tanto para ciudad como para carretera. Está equipado con características como Toyota Safety Sense, pantalla táctil, compatibilidad con Apple CarPlay y Android Auto, y opciones de motorización híbrida o de gasolina.',
-  };
+  }; */
 
   const [selectedImage, setSelectedImage] = useState(0);
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
+  const {liscart,setLiscart,toastCall, detailCar } = useAppContext()
+
+  const car = detailCar
+
+  console.log(car)
 
   const handleNext = () => {
     setSelectedImage((prevIndex) => (prevIndex + 1) % car.img.length);
   };
+
+  const handleReservar = () => {
+    if (dateFrom !== "" && dateTo !== "") {
+      const list = liscart.filter(carlist => carlist.nombre !== car.nombre)
+      const listOfCarts = [
+        ...list,
+        {
+          nombre: car.nombre,
+          precio: car.precio,
+          img: car.img[0],
+          desde: dateFrom,
+          hasta: dateTo,
+        }
+      ]
+      setLiscart(listOfCarts);
+      toastCall(` ${car.nombre} agregado al carrito`);
+    } else {
+      toastCall(`Debe indicar una fecha`);
+    }
+  }
 
   const handlePrev = () => {
     setSelectedImage((prevIndex) => (prevIndex - 1 + car.img.length) % car.img.length);
@@ -105,9 +133,8 @@ const Details = () => {
                 key={index}
                 src={thumbnail}
                 alt={`Miniatura ${index + 1}`}
-                className={`w-16 h-16 object-cover cursor-pointer rounded-lg ${
-                  index === selectedImage ? 'ring-2 ring-orange-500' : ''
-                }`}
+                className={`w-16 h-16 object-cover cursor-pointer rounded-lg ${index === selectedImage ? 'ring-2 ring-orange-500' : ''
+                  }`}
                 onClick={() => setSelectedImage(index)}
               />
             ))}
@@ -117,12 +144,12 @@ const Details = () => {
         <div className="flex-1 bg-white p-6 rounded-lg shadow-lg mt-4 lg:mt-0 lg:mb-4 lg:mr-4 min-h-[350px]">
           <div>
             <h2 className="text-lg font-semibold mb-2">Detalles del Vehículo</h2>
-            <p><strong>Marca:</strong> {car.marca}</p>
-            <p><strong>Modelo:</strong> {car.modelo}</p>
+            <p><strong>Marca:</strong> {car?.marca}</p>
+            <p><strong>Modelo:</strong> {car?.modelo}</p>
             <p><strong>Año:</strong> {car.anio}</p>
-            <p><strong>Combustible:</strong> {car.combustible}</p>
+            <p><strong>Combustible:</strong> {car?.combustible}</p>
             <p className="text-justify mt-2">
-              <strong>Descripción:</strong> {car.descripcion}
+              <strong>Descripción:</strong> {car?.descripcion}
             </p>
           </div>
         </div>
@@ -148,12 +175,12 @@ const Details = () => {
               <option>Aeropuerto Punta Cana (PUJ)</option>
               <option>Aeropuerto La Isabela (JBQ)</option>
             </select>
-            <input type="date" placeholder="Fecha inicio" className="border border-gray-300 p-2 rounded" />
-            <input type="date" placeholder="Fecha retorno" className="border border-gray-300 p-2 rounded" />
+            <input type="date" placeholder="Fecha inicio" onChange={(e) => { setDateFrom(e.target.value) }} className="border border-gray-300 p-2 rounded" />
+            <input type="date" placeholder="Fecha retorno" onChange={(e) => { setDateTo(e.target.value) }} className="border border-gray-300 p-2 rounded" />
             <input type="text" placeholder="Aerolínea" className="border border-gray-300 p-2 rounded" />
             <input type="text" placeholder="No. Vuelo" className="border border-gray-300 p-2 rounded" />
           </div>
-          <button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
+          <button type="button" onClick={() => { handleReservar() }} className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
             Reservar
           </button>
         </form>

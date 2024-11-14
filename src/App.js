@@ -14,22 +14,21 @@ import Newvehiculos from './pages/newVehiculos/newvehiculos';
 function App() {
   // Hook para obtener la ruta actual
   const location = useLocation();
-
   return (
     <>
       {/* Condiciona que el Navbar no se muestre en la ruta de login */}
-      {location.pathname == '/login' || location.pathname == '/register' ? '': <Navbar />}
+      {location.pathname === '/login' || location.pathname === '/register' ? '': <Navbar />}
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} /> 
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/details" element={<Details />} />
-        <Route path="/newvehiculos" element={<Newvehiculos />} />
+        <Route path="/admin/newvehiculos" element={<Newvehiculos />} />
       </Routes>
-      {location.pathname == '/login' || location.pathname == '/register' ? '': <FooterAll />}
+      {location.pathname === '/login' || location.pathname === '/register' ? '': <FooterAll />}
     </>
   );
 }

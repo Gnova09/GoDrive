@@ -1,10 +1,20 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'fade-right': 'fadeRight 2s ease-in-out', // Cambiar la duración a 2s
+      },
+      keyframes: {
+        fadeRight: {
+          '0%': { opacity: 0, transform: 'translateX(-100%)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' },
+        },
+      },
+    },
   },
   plugins: [],
 }

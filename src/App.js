@@ -10,10 +10,12 @@ import FooterAll from './components/footer';
 import Details from './pages/details/detalles';
 import Servicios from './pages/servicios/Servicios';
 import Newvehiculos from './pages/newVehiculos/newvehiculos';
+import SDetalles from '../src/components/servicios/ui/SDetalles';
 
 function App() {
   // Hook para obtener la ruta actual
   const location = useLocation();
+  
 
   return (
     <>
@@ -28,6 +30,12 @@ function App() {
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/details" element={<Details />} />
         <Route path="/admin/newvehiculos" element={<Newvehiculos />} />
+
+        <Route path="/servicios/SDetalles" element={<SDetalles />} />
+        <Route path="/servicios/SDetalles/grua" element={<SDetalles />} />
+        <Route path="/servicios/SDetalles/asistencia" element={<SDetalles />} />
+        <Route path="/servicios/SDetalles/serviciopremium" element={<SDetalles />} />
+
       </Routes>
       {location.pathname == '/login' || location.pathname == '/register' ? '': <FooterAll />}
     </>

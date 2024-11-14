@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import useAppContext from "../../context/context";
+import { useNavigate } from 'react-router-dom';
 
 const CardOfCars = ({ nombre, precio, img }) => {
-  const { liscart, setLiscart, toastCall } = useAppContext();
+  const { liscart, setLiscart, toastCall, setdetailCar } = useAppContext();
+  const navigate = useNavigate();
 
   // Estado para controlar la apertura del modal
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +17,12 @@ const CardOfCars = ({ nombre, precio, img }) => {
     setSelectedCar(car); // Guardamos el vehículo seleccionado
     setIsOpen(true); // Abrimos el modal
   };
+
+  const handleDetalle = () => {
+    
+    setdetailCar({nombre, precio, img})
+    navigate("/details")
+  }
  
 
   // Función para manejar la selección de fechas
@@ -52,12 +60,12 @@ const CardOfCars = ({ nombre, precio, img }) => {
 
         <div className="flex items-center justify-between mt-2">
           <span className="text-lg font-bold text-blue-600">USD {precio}</span>
-          <a
-            href="/details"
+          <button
+            onClick={()=>{handleDetalle()}}
             class="text-white bg-orange-500 hover:bg-orange-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
             Ver Detalles
-          </a>
+          </button>
           <img
             className="cursor-pointer"
             src="assets/icons/carrito/anadir-al-carrito.png"

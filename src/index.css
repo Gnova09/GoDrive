@@ -24,7 +24,3 @@ html, body {
   height: 100%;
   overflow-x: hidden; 
 }
-
-.h-full-minus-20 {
-  height: calc(100% - 5rem);
-}

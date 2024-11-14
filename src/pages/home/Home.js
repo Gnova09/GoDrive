@@ -1,13 +1,12 @@
 import React from 'react'
 import CardOfCars from '../../components/home/cardOfCars'
 import Features from '../../components/home/feature'
-import Daterangepicker from '../../components/Datepicker/datepicker'
 import useAppContext from '../../context/context'
+import Mapa from '../../components/maps/mapa'
 
 export const Home = () => {
 
   const { cars } = useAppContext()
-
   return (
     <div className=' border border-gray-400 mx-20  p-0'>
 
@@ -38,6 +37,10 @@ export const Home = () => {
       </div>
 
       <Features />
+
+      <Mapa />
+
+      
     </div>
   )
 }

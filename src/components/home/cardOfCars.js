@@ -53,8 +53,8 @@ const CardOfCars = ({ nombre, precio, img }) => {
         <div className="flex items-center justify-between mt-2">
           <span className="text-lg font-bold text-blue-600">USD {precio}</span>
           <a
-            href="#"
-            className="text-white bg-orange-500 hover:bg-orange-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            href="/details"
+            class="text-white bg-orange-500 hover:bg-orange-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
             Ver Detalles
           </a>

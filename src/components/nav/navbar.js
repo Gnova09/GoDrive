@@ -4,7 +4,15 @@ import useAppContext from '../../context/context';
 
 const Navbar = () => {
     const [showCart, setShowCart] = useState(false)
-    const { islogin } = useAppContext()
+    const { islogin, setIslogin } = useAppContext()
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleLogout = () => {
+        // Lógica de logout aquí, como redirigir o limpiar el estado
+        console.log("Logout");
+        setIslogin(!islogin)
+        setIsModalOpen(false);  // Cerrar el modal después del logout
+    };
 
 
     return (
@@ -55,7 +63,7 @@ const Navbar = () => {
                                 Servicios
                             </a>
                         </li>
-                        {islogin ?
+                        {!islogin ?
                             <>
                                 <li>
                                     <a href="/register" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
@@ -69,20 +77,46 @@ const Navbar = () => {
                                 </li>
                             </>
                             :
-                            ''
+                            <li className='flex items-center hover:cursor-pointer' onClick={() => setIsModalOpen(true)}>
+                                <svg className='h-6 w-6' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="7" r="5" fill="#000" />
+                                    <path d="M12 14c-5 0-9 3-9 7v1h18v-1c0-4-4-7-9-7z" fill="#000" />
+                                </svg>
+                                <h3 className='ml-2'>Logout</h3>
+                            </li>
                         }
 
                     </ul>
+                    {/* Modal de Logout */}
+                    {isModalOpen && (
+                        <div className=" inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center absolute z-20">
+                            <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+                                <h2 className="text-xl font-bold mb-4">¿Estás seguro de que quieres cerrar sesión?</h2>
+                                <div className="flex justify-end gap-4">
+                                    <button
+                                        onClick={() => setIsModalOpen(false)}
+                                        className="px-4 py-2 bg-gray-300 text-black rounded-lg hover:bg-gray-400"
+                                    >
+                                        Cancelar
+                                    </button>
+                                    <button
+                                        onClick={handleLogout}
+                                        className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                    >
+                                        Confirmar Logout
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div>
                     <img onClick={() => setShowCart(!showCart)} src="assets/icons/carrito/carrito-de-compras.png" width="30" className="white cursor-pointer" />
                 </div>
             </div>
             {showCart ? <ShoppingCart showCart={setShowCart} /> : ""}
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="7" r="5" fill="#ccc" />
-                <path d="M12 14c-5 0-9 3-9 7v1h18v-1c0-4-4-7-9-7z" fill="#ccc" />
-            </svg>
+
+
         </nav>
     );
 };

@@ -13,9 +13,6 @@ import Servicios from './pages/servicios/Servicios';
 function App() {
   // Hook para obtener la ruta actual
   const location = useLocation();
-  
-  
-
   return (
     <>
       {/* Condiciona que el Navbar no se muestre en la ruta de login */}

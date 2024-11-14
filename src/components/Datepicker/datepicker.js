@@ -1,29 +1,92 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { Datepicker } from 'flowbite-datepicker';
 
-const Datepicker = () => {
+const DateRangeModal = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [dateFrom, setDateFrom] = useState(''); // Estado para Fecha Desde
+    const [dateTo, setDateTo] = useState(''); // Estado para Fecha Hasta
+
+    useEffect(() => {
+        if (isOpen) {
+            // Establece un timeout antes de inicializar los pickers
+            const timeoutId = setTimeout(() => {
+                const dateFromElement = document.getElementById('dateFrom');
+                const dateToElement = document.getElementById('dateTo');
+
+                // Verifica que los elementos existan antes de inicializar el Datepicker
+                if (dateFromElement) {
+                    new Datepicker(dateFromElement, {
+                        onSelect: (date) => setDateFrom(date), // Actualiza el estado de dateFrom cuando se selecciona una fecha
+                    });
+                }
+                if (dateToElement) {
+                    new Datepicker(dateToElement, {
+                        onSelect: (date) => setDateTo(date), // Actualiza el estado de dateTo cuando se selecciona una fecha
+                    });
+                }
+            }, 500); // Retraso de 500 ms
+
+            // Limpia el timeout si el componente se desmonta o se cierra el modal
+            return () => clearTimeout(timeoutId);
+        }
+    }, [isOpen]);
+
+    const toggleModal = () => setIsOpen(!isOpen);
+
     return (
-        <div id="date-range-picker" date-rangepicker class="flex items-center">
-            <div class="relative">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                    </svg>
+        <div>
+            {/* Botón para abrir el modal */}
+            <button
+                onClick={toggleModal}
+                className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
+            >
+                Elegir Rango de Fechas
+            </button>
+
+            {/* Modal */}
+            {isOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                        <h2 className="text-xl font-semibold mb-4">Selecciona el rango de fechas</h2>
+
+                        {/* Campo de Fecha Desde */}
+                        <label htmlFor="dateFrom" className="block text-sm font-medium text-gray-700">
+                            Fecha Desde
+                        </label>
+                        <input
+                            type="text"
+                            id="dateFrom"
+                            value={dateFrom}
+                            readOnly // Para que el usuario solo pueda seleccionar una fecha, no escribirla
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+                            placeholder="Selecciona la fecha desde"
+                        />
+
+                        {/* Campo de Fecha Hasta */}
+                        <label htmlFor="dateTo" className="block text-sm font-medium text-gray-700">
+                            Fecha Hasta
+                        </label>
+                        <input
+                            type="text"
+                            id="dateTo"
+                            value={dateTo}
+                            readOnly // Para que el usuario solo pueda seleccionar una fecha, no escribirla
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+                            placeholder="Selecciona la fecha hasta"
+                        />
+
+                        {/* Botón para cerrar el modal */}
+                        <button
+                            onClick={toggleModal}
+                            className="w-full px-4 py-2 mt-4 text-white bg-blue-600 rounded hover:bg-blue-700"
+                        >
+                            Confirmar
+                        </button>
+                    </div>
                 </div>
-                <input id="datepicker-range-start" name="start" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date start"/>
-            </div>
-            <span class="mx-4 text-gray-500">to</span>
-            <div class="relative">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                    </svg>
-                </div>
-                <input id="datepicker-range-end" name="end" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date end"/>
-            </div>
+            )}
         </div>
+    );
+};
 
-
-    )
-}
-
-export default Datepicker
+export default DateRangeModal;

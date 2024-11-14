@@ -12,20 +12,7 @@ export const AppContextProvider = ({ children }) => {
     //TOAST NOTIFICATION
     const [showToast, setShowToast] = useState(false);
     const [textToast, setTextToast] = useState("");
-    const [liscart, setLiscart] = useState([ { 
-        nombre: 'Toyota Corolla 2020',
-        precio: 50,
-        img: "/assets/carsImgenes/Toyota corolla 2020/Corolla Main.webp",
-        desde: '01/02/2024',
-        hasta: '10/02/2024',
-      },
-      { 
-        nombre: 'Honda Civic 2021',
-        precio: 55,
-        img: "/assets/carsImgenes/Honda civic 2021/Civic Main.webp",
-        desde: '01/02/2024',
-        hasta: '10/02/2024',
-      },]);
+    const [liscart, setLiscart] = useState([]);
 
      const [cars, setCars] = useState([
         { 

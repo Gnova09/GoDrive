@@ -17,23 +17,30 @@ const ShoppingCart = ({ showCart }) => {
 
   const handlePago = ()=> {
     if(islogin ){
-      toastCall('Le llegara el Link de pago y la factura via correo')
+      if(liscart.lenght > 0){
+        
+              showCart(false)
+              setLiscart([])
+              toastCall('Le llegara el Link de pago y la factura via correo')
+      }else{
+        showCart(false)
+        toastCall('No existe NINGUN carro agregado')
+      }
 
     }else{
       toastCall('Debe iniciar sesion')
       navigate("/login")
-
     }
   }
   return (
-    <div className=' absolute z-20 scroll-m-1 h-full top-0 right-0  w-1/3 bg-slate-200 rounded '>
+    <div className=' absolute z-20 scroll-m-1 h-[90%] top-0 right-0   w-1/3 bg-slate-200 rounded '>
       <div className=' justify-center p-5 flex flex-row'>
         <h1 className='p-0 text-center font-bold text-2xl'>
           Carro de compra
         </h1>
 
-        <button type="button" onClick={() => showCart(false)} class="text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto  dark:hover:bg-gray-600 dark:hover:text-white" >
-          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <button type="button" onClick={() => showCart(false)} className="text-black hover:bg-red-600 bg-gray-300 flex items-center justify-center  rounded-lg text-sm w-8 h-8 ms-auto " >
+          <svg class="w-3 h-3  " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
           </svg>
           <span class="sr-only">Close modal</span>
@@ -46,7 +53,7 @@ const ShoppingCart = ({ showCart }) => {
         {
           liscart.map(({ nombre, precio, img, desde, hasta }) => {
             return (
-              <div className='flex flex-row mb-3 ml-3 '>
+              <div className='flex flex-row mb-3 ml-3 border-b border-gray-500  '>
                 <img className='h-[100px]' src={img} alt={`${nombre} imagen`} />
                 <div className='flex flex-col'>
                   <span className=' font-bold ml-2'>{nombre}</span>
@@ -66,7 +73,7 @@ const ShoppingCart = ({ showCart }) => {
                   </button>
 
                 </div>
-                <button type="button" onClick={()=>{handleDeleteCar(nombre)}} class="text-black flex justify-center items-center bg-red-600 hover:bg-gray-200 hover:text-gray-900 rounded text-sm w-8  ms-auto  dark:hover:bg-gray-600 dark:hover:text-white" >
+                <button type="button" onClick={()=>{handleDeleteCar(nombre)}} class="text-black flex justify-center items-center hover:bg-red-600 bg-gray-300 hover:text-gray-900 rounded text-sm w-8  ms-auto  dark:hover:bg-gray-600 dark:hover:text-white" >
                   <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
                   </svg>
@@ -78,7 +85,7 @@ const ShoppingCart = ({ showCart }) => {
         }
 
       </div>
-      <div className='w-full flex justify-center items-center'>
+      <div className='w-full flex bottom-0 justify-center items-center'>
         <button type="button" onClick={()=>handlePago()} class="focus:outline-none text-white font-semibold   bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300  rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Procceder al pago</button>
       </div>
 

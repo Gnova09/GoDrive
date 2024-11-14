@@ -29,8 +29,8 @@ export const Home = () => {
 
       <div class="grid items-center justify-center grid-cols-3 gap-4 pt-2">
         {
-          cars.map(({ nombre, precio, img }) => {
-            return <CardOfCars nombre={nombre} precio={precio} img={img} />
+          cars.map((carro) => {
+            return <CardOfCars carro={carro}  />
           })
         }
 

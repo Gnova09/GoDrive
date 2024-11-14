@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import useAppContext from "../../context/context";
 import { useNavigate } from 'react-router-dom';
 
-const CardOfCars = ({ nombre, precio, img }) => {
+const CardOfCars = ({ carro }) => {
   const { liscart, setLiscart, toastCall, setdetailCar } = useAppContext();
   const navigate = useNavigate();
+  const {nombre, precio, img} = carro
 
   // Estado para controlar la apertura del modal
   const [isOpen, setIsOpen] = useState(false);
@@ -19,21 +20,21 @@ const CardOfCars = ({ nombre, precio, img }) => {
   };
 
   const handleDetalle = () => {
-    
-    setdetailCar({nombre, precio, img})
+
+    setdetailCar(carro)
     navigate("/details")
   }
- 
+
 
   // Función para manejar la selección de fechas
   const handleDateSelection = () => {
-    if (selectedCar ) {
+    if (selectedCar) {
 
-      if(dateFrom !== "" && dateTo !== ""){
+      if (dateFrom !== "" && dateTo !== "") {
 
         const list = liscart.filter(car => car.nombre !== selectedCar.nombre)
         const listOfCarts = [
-          ...list, 
+          ...list,
           {
             nombre: nombre,
             precio: precio,
@@ -45,7 +46,7 @@ const CardOfCars = ({ nombre, precio, img }) => {
         setLiscart(listOfCarts);
         setIsOpen(false); // Cerramos el modal después de seleccionar las fechas
         toastCall(` ${selectedCar.nombre} agregado al carrito`);
-      }else{
+      } else {
         toastCall(`Debe indicar una fecha`);
       }
     }
@@ -61,7 +62,7 @@ const CardOfCars = ({ nombre, precio, img }) => {
         <div className="flex items-center justify-between mt-2">
           <span className="text-lg font-bold text-blue-600">USD {precio}</span>
           <button
-            onClick={()=>{handleDetalle()}}
+            onClick={() => { handleDetalle() }}
             class="text-white bg-orange-500 hover:bg-orange-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
             Ver Detalles

@@ -2,6 +2,7 @@ import React from 'react'
 import CardOfCars from '../../components/home/cardOfCars'
 import Features from '../../components/home/feature'
 import Mapa from '../../components/maps/mapa'
+import Sidebar from '../../components/Sidebar/Sidebar'; 
 
 
 export const Home = () => {
@@ -183,8 +184,10 @@ export const Home = () => {
 </div>
 
       </div>
+      <div className='flex flex-row '>
 
-      <div class="grid items-center justify-center grid-cols-3 gap-4 pt-2">
+        <Sidebar/>
+      <div class="grid w-full items-center ml-3 justify-center grid-cols-3 gap-4 pt-2">
         {
           cars.map(({nombre,precio,img})=>{
             return <CardOfCars nombre={nombre} precio={precio} img={img} />
@@ -192,10 +195,15 @@ export const Home = () => {
         }
         
       </div>
+        </div>
 
       <Features />
 
-      <Mapa />
+      <Mapa/>
+
+
+      
+      
 
       
     </div>

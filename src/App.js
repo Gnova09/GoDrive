@@ -27,7 +27,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/details" element={<Details />} />
-        <Route path="/newvehiculos" element={<Newvehiculos />} />
+        <Route path="/admin/newvehiculos" element={<Newvehiculos />} />
       </Routes>
       {location.pathname == '/login' || location.pathname == '/register' ? '': <FooterAll />}
     </>

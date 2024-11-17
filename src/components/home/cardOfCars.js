@@ -54,7 +54,7 @@ const CardOfCars = ({ carro }) => {
 
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
-      <img className="w-full" src={img} alt={`${nombre} imagen`} />
+      <img className="w-full" src={img[0]} alt={`${nombre} imagen`} />
 
       <div className="p-4">
         <h5 className="text-xl font-semibold tracking-tight text-gray-900">{nombre}</h5>

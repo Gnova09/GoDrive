@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 //Context
@@ -37,7 +38,7 @@ export const AppContextProvider = ({ children }) => {
       nombre: "Honda Civic 2021",
       precio: 55,
       img: ["/assets/carsImgenes/Honda civic 2021/Civic Main.webp",
-        "/assets/carsImgenes/Honda civic 2021/Civic 2.webp",  
+        "/assets/carsImgenes/Honda civic 2021/Civic 2.webp",
         "/assets/carsImgenes/Honda civic 2021/Civic 3.webp",
         "/assets/carsImgenes/Honda civic 2021/Civic 4.webp",
         "/assets/carsImgenes/Honda civic 2021/Civic 5.webp",
@@ -199,14 +200,14 @@ export const AppContextProvider = ({ children }) => {
     {
       nombre: "Lexus CT 200H 2017",
       precio: 40,
-      img: ["/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h Main1.webp",    
-        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 2.webp", 
-        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 3.webp", 
-        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 4.webp", 
-        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 5.webp", 
-        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 6.webp", 
-        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 7.webp",    
-        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 8.webp", 
+      img: ["/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h Main1.webp",
+        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 2.webp",
+        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 3.webp",
+        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 4.webp",
+        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 5.webp",
+        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 6.webp",
+        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 7.webp",
+        "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 8.webp",
       ],
       modelo: "CT 200H",
       marca: "Lexus",
@@ -566,15 +567,10 @@ export const AppContextProvider = ({ children }) => {
   const [form606Data, setform606Data] = useState([]);
   const [proveedor, setproveedor] = useState([]);
   const [newform, setnewform] = useState([]);
-  const [users, setusers] = useState([
-    {
-      email: "Georges@gmail.com",
-      pass: "1234567",
-    },
-  ]);
+  const [users, setusers] = useState({});
 
   //ComponentDidMouunt
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
   const toastCall = (text) => {
     setTextToast(text);
     setShowToast(true);
@@ -592,6 +588,74 @@ export const AppContextProvider = ({ children }) => {
       return false;
     }
   };
+
+  const logear = async({ email, pass }) => {
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      "email": email,
+      "password": pass
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Cliente/login`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {  
+        setIslogin(true)
+        setusers(result)
+        toastCall("Logged")
+        return true
+      })
+      .catch((error) => {
+        toastCall("Error en el login")
+        return false
+      });
+
+      return response
+
+  }
+
+  const logearAdmin = async({ email, pass }) => {
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      "email": email,
+      "password": pass
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Usuario/login`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {  
+        setIslogin(true)
+        setusers(result)
+        toastCall("Logged")
+        return true
+      })
+      .catch((error) => {
+        toastCall("Error en el login")
+        return false
+      });
+
+      return response
+
+  }
 
   const values = {
     // Funciones que son exportadas para manejo externo.
@@ -622,6 +686,8 @@ export const AppContextProvider = ({ children }) => {
     setTextToast,
     detailCar,
     setdetailCar,
+    logear,
+    logearAdmin
   }; // States que serán visibles en el contexto.
 
   // Interface donde será expuesto como proveedor y envolverá la App.

@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { Login } from './pages/Login/Login';
+import { LoginAdmin } from './pages/admin/login/LoginAdmin';
 import { Home } from './pages/home/Home';
 import { Register } from './pages/Register/Register';
 import About from './pages/about/About';
@@ -17,7 +18,7 @@ function App() {
   return (
     <>
       {/* Condiciona que el Navbar no se muestre en la ruta de login */}
-      {location.pathname === '/login' || location.pathname === '/register' ? '': <Navbar />}
+      {location.pathname === '/login' || location.pathname === '/register' ||  location.pathname === "/admin/login" ? '': <Navbar />}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -27,8 +28,9 @@ function App() {
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/details" element={<Details />} />
         <Route path="/admin/newvehiculos" element={<Newvehiculos />} />
+        <Route path="/admin/login" element={<LoginAdmin />} />
       </Routes>
-      {location.pathname === '/login' || location.pathname === '/register' ? '': <FooterAll />}
+      {location.pathname === '/login' || location.pathname === '/register' || location.pathname === "/admin/login"  ? '': <FooterAll />}
     </>
   );
 }

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 //Context
@@ -566,15 +567,10 @@ export const AppContextProvider = ({ children }) => {
   const [form606Data, setform606Data] = useState([]);
   const [proveedor, setproveedor] = useState([]);
   const [newform, setnewform] = useState([]);
-  const [users, setusers] = useState([
-    {
-      email: "Georges@gmail.com",
-      pass: "1234567",
-    },
-  ]);
+  const [users, setusers] = useState({});
 
   //ComponentDidMouunt
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
   const toastCall = (text) => {
     setTextToast(text);
     setShowToast(true);
@@ -592,6 +588,76 @@ export const AppContextProvider = ({ children }) => {
       return false;
     }
   };
+
+  const logear = async({ email, pass }) => {
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      "email": email,
+      "password": pass
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      mode: 'no-cors',
+      redirect: "follow"
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Cliente/login`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {  
+        setIslogin(true)
+        setusers(result)
+        toastCall("Logged")
+        return true
+      })
+      .catch((error) => {
+        toastCall("Error en el login")
+        return false
+      });
+
+      return response
+
+  }
+
+  const logearAdmin = async({ email, pass }) => {
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      "email": email,
+      "password": pass
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      mode: 'no-cors',
+      redirect: "follow"
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Usuario/login`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {  
+        setIslogin(true)
+        setusers(result)
+        toastCall("Logged")
+        return true
+      })
+      .catch((error) => {
+        toastCall("Error en el login")
+        return false
+      });
+
+      return response
+
+  }
 
   const values = {
     // Funciones que son exportadas para manejo externo.
@@ -622,6 +688,8 @@ export const AppContextProvider = ({ children }) => {
     setTextToast,
     detailCar,
     setdetailCar,
+    logear,
+    logearAdmin
   }; // States que serán visibles en el contexto.
 
   // Interface donde será expuesto como proveedor y envolverá la App.

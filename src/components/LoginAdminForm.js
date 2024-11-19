@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import useAppContext from '../context/context';
 import { useNavigate } from 'react-router-dom';
 
-function LoginForm() {
+function LoginAdminForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
 
-    const {  islogin,  toastCall, users, logear,  } = useAppContext()
+    const {  islogin,  toastCall, users, logearAdmin,  } = useAppContext()
     
 
     //funcion del boton de login
     const handleSubmitLogin = async () =>{
       //TODO: aqui va el fetch al aAPI DEL BACKEND
-      if(await logear({email, pass})) navigate("/")     
+      if(await logearAdmin({email, pass})) navigate("/admin")     
     }
 
   return (
@@ -115,4 +115,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default LoginAdminForm;

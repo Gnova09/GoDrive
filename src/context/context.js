@@ -603,6 +603,7 @@ export const AppContextProvider = ({ children }) => {
       method: "POST",
       headers: myHeaders,
       body: raw,
+      mode: 'no-cors',
       redirect: "follow"
     };
 
@@ -637,6 +638,7 @@ export const AppContextProvider = ({ children }) => {
       method: "POST",
       headers: myHeaders,
       body: raw,
+      mode: 'no-cors',
       redirect: "follow"
     };
 

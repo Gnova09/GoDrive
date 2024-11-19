@@ -13,7 +13,7 @@ function LoginAdminForm() {
     //funcion del boton de login
     const handleSubmitLogin = async () =>{
       //TODO: aqui va el fetch al aAPI DEL BACKEND
-      if(await logearAdmin({email, pass})) navigate("/")     
+      if(await logearAdmin({email, pass})) navigate("/admin")     
     }
 
   return (

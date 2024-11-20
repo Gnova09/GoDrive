@@ -28,43 +28,26 @@ const Newvehiculos = () => {
   };
 
   return (
-    <form
-      className="mx-auto p-4 rounded-sm shadow-lg border max-w-full sm:max-w-3xl"
-      style={{
-        backgroundColor: "#f5f5dc",
-        maxWidth: "60%",
-        marginTop: "50px",
-        marginBottom: "80px",
-        borderColor: "#e2e8f0",
-        boxShadow:
-          "0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06)",
-        borderRadius: "12px",
-      }}
-    >
-      <div className="d-flex align-items-center justify-content-center mb-7">
-        <a href="/" className="d-flex align-items-center text-dark">
-          <img
-            width={200}
-            height={200}
-            className="me-2 max-w-full h-auto"
-            src="/assets/logo.png"
-            alt="Logo GoDrive"
-          />
-          <span
-            className="h1 font-style-normal font-weight-weight"
-            style={{
-              fontFamily: "'Playwrite PE', serif",
-            }}
-          >
-            GoDrive
-          </span>
-        </a>
-      </div>
 
-      <h1
-        className="text-2xl sm:text-3xl font-style-normal font-weight-weight text-gray-800 mb-4 sm:mb-6"
-        style={{ fontFamily: "'Playwrite PE', serif" }}
-      >
+    <form className="bg-[#E3F2FD] mx-auto p-4 rounded-[12px] sm:mb-8 lg:mb-12 shadow-[0_4px_6px_rgba(0,0,0,0.1),0_1px_3px_rgba(0,0,0,0.06)] border border-[#e2e8f0] max-w-[90%] sm:max-w-[80%] lg:max-w-2xl xl:max-w-3xl mt-[15px] mb-[80px]">
+  <div className="d-flex flex-col sm:flex-row gap-4 justify-center items-center">
+    <a href="/" className="d-flex align-items-center text-dark">
+      <img
+        className="w-[100px] h-[100px] sm:w-[200px] sm:h-[200px] max-w-full h-auto"
+        src="/assets/logo.png"
+        alt="Logo GoDrive"
+      />
+      <span className="text-4xl sm:text-4xl font-bold font-[Playwrite_PE]">
+        GoDrive
+      </span>
+    </a>
+  </div>
+
+
+
+
+
+      <h1 className="text-2xl sm:text-3xl font-normal text-gray-800 mb-4 sm:mb-6 font-[Playwrite_PE]">
         Añadir vehículos
       </h1>
 
@@ -72,11 +55,11 @@ const Newvehiculos = () => {
       <div className="d-flex flex-col sm:flex-row justify-between">
         <div className="mb-16 sm:mr-2 w-full sm:w-1/2">
           <label htmlFor="matricula" className="form-label text-dark">
-            <strong>matricula:</strong>
+            <strong>Matrícula:</strong>
           </label>
           <input
             type="text"
-            className="form-control text-dark w-full shadow-md border-gray-400 focus:ring-0 focus:border-gray-400"
+            className="form-control text-dark w-full shadow-md border- rounded-3 border-gray-400 focus:ring-0 focus:border-gray-400"
             id="matricula"
             placeholder="Ingrese la matricula del vehículo"
             maxLength={10}
@@ -85,11 +68,11 @@ const Newvehiculos = () => {
         </div>
         <div className="mb-16 sm:ml-2 w-full sm:w-1/2">
           <label htmlFor="marca" className="form-label text-dark">
-            <strong>marca:</strong>
+            <strong>Marca:</strong>
           </label>
           <input
             type="text"
-            className="form-control text-dark w-full shadow-md border-gray-400 focus:ring-0 focus:border-gray-400"
+            className="form-control text-dark w-full shadow-md border- rounded-3 border-gray-400 focus:ring-0 focus:border-gray-400"
             id="marca"
             placeholder="Ingrese la marca del vehículo"
             maxLength={50}
@@ -101,11 +84,11 @@ const Newvehiculos = () => {
       <div className="d-flex flex-col sm:flex-row justify-between">
         <div className="mb-5 sm:mr-2 w-full sm:w-1/2">
           <label htmlFor="modelo" className="form-label text-dark">
-            <strong>modelo:</strong>
+            <strong>Modelo:</strong>
           </label>
           <input
             type="text"
-            className="form-control text-dark w-full shadow-md border-gray-400 focus:ring-0 focus:border-gray-400"
+            className="form-control text-dark w-full shadow-md border- rounded-3 border-gray-400 focus:ring-0 focus:border-gray-400"
             id="modelo"
             placeholder="Ingrese el modelo del vehículo"
             maxLength={50}
@@ -114,11 +97,11 @@ const Newvehiculos = () => {
         </div>
         <div className="mb-16 sm:ml-2 w-full sm:w-1/2">
           <label htmlFor="ano" className="form-label text-dark">
-            <strong>transmision:</strong>
+            <strong>Transmisión:</strong>
           </label>
           <input
             type="text"
-            className="form-control text-dark w-full shadow-md border-gray-400 focus:ring-0 focus:border-gray-400"
+            className="form-control text-dark w-full shadow-md border- rounded-3 border-gray-400 focus:ring-0 focus:border-gray-400"
             id="ano"
             placeholder="Ingrese el tipo de transmisión del vehículo"
             maxLength={15}
@@ -130,11 +113,11 @@ const Newvehiculos = () => {
       <div className="d-flex flex-col sm:flex-row justify-between">
         <div className="mb-11  sm:mr-2 w-full sm:w-1/2">
           <label htmlFor="year" className="form-label text-dark">
-            <strong>year:</strong>
+            <strong>Year:</strong>
           </label>
           <input
             type="number"
-            className="form-control text-dark w-full shadow-md border-gray-400 focus:ring-0 focus:border-gray-400"
+            className="form-control text-dark w-full shadow-md border- rounded-3 border-gray-400 focus:ring-0 focus:border-gray-400"
             id="year"
             placeholder="Ingrese el año de fabricación"
             min={1886}
@@ -143,8 +126,11 @@ const Newvehiculos = () => {
           />
         </div>
         <div className="mb-5 sm:ml-2 w-full sm:w-1/2">
-          <label htmlFor="numero_de_puertas" className="form-label text-dark">
-            <strong>numero_Puertas:</strong>
+          <label
+            htmlFor="numero_de_puertas"
+            className="form-label text-dark border- rounded-3"
+          >
+            <strong>Número_puertas:</strong>
           </label>
           <select
             id="numero_de_puertas"
@@ -171,7 +157,7 @@ const Newvehiculos = () => {
       <div className="d-flex flex-col sm:flex-row justify-between">
         <div className="mb-5 mt-4 sm:mr-2 w-full sm:w-1/2">
           <label htmlFor="numero_asientos" className="form-label text-dark">
-            <strong>numero_asientos:</strong>
+            <strong>Número_asientos:</strong>
           </label>
           <select
             id="numero_asientos"
@@ -201,7 +187,7 @@ const Newvehiculos = () => {
           <input
             type="number"
             id="costo_por_dia"
-            className="form-control text-dark w-full shadow-md border-gray-400 focus:ring-0 focus:border-gray-400"
+            className="form-control text-dark w-full shadow-md border- rounded-3 border-gray-400 focus:ring-0 focus:border-gray-400"
             placeholder="Ingrese el costo por día"
             min="0"
             value={costoPorDia}
@@ -214,7 +200,7 @@ const Newvehiculos = () => {
       <div className="mb-5 mt-7 d-flex justify-content-center align-items-center">
         <label
           htmlFor="rentado"
-          className="form-label text-dark d-flex align-items-center"
+          className="form-label border- rounded-3 text-dark d-flex align-items-center"
           style={{ textAlign: "center" }}
         >
           <input
@@ -230,13 +216,13 @@ const Newvehiculos = () => {
 
       <div className="mb-5 mt-7 w-full">
         <label htmlFor="descripcion" className="form-label text-dark">
-          <strong>descripcion:</strong>
+          <strong>Descripción:</strong>
         </label>
         <textarea
           id="descripcion"
-          className="form-control text-dark w-full shadow-md border-gray-400 focus:ring-0 focus:border-gray-400"
+          className="form-control text-dark w-full shadow-md border- rounded-3 border-gray-400 focus:ring-0 focus:border-gray-400"
           placeholder="Escriba una breve descripción del vehículo"
-          maxLength={500}
+          maxLength={700}
           rows={4}
           required
         ></textarea>
@@ -251,7 +237,7 @@ const Newvehiculos = () => {
           accept="image/*"
           id="image"
           onChange={handleImageChange}
-          className="form-control text-dark w-full shadow-md border-gray-400 focus:ring-0 focus:border-gray-400"
+          className="block w-full border- rounded-3 rounded-md shadow-sm focus:ring focus:ring-blue-300"
         />
       </div>
 
@@ -260,14 +246,14 @@ const Newvehiculos = () => {
           <img
             src={imageBase64}
             alt="Vista previa del vehículo"
-            className="w-1/3 h-auto shadow-lg"
+            className="max-w-full sm:max-w-[50%] h-auto shadow-lg object-cover rounded-md"
           />
         </div>
       )}
 
       <button
         type="submit"
-        className="btn btn-primary w-full sm:w-auto mt-3 bg-blue-500 hover:bg-[#999980] text-white border-0"
+        className="w-full sm:w-auto sm:px-6 lg:px-8 bg-blue-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105 mt-3"
       >
         <strong>Añadir vehículo al catálogo</strong>
       </button>

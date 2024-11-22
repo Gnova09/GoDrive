@@ -1,6 +1,8 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Servicios = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
       {/* Hero Section */}
@@ -46,7 +48,10 @@ const Servicios = () => {
                   protegido durante su alquiler.
                 </p>
               </div>
-              <button className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors duration-300 mt-auto">
+              <button
+                className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors duration-300 mt-auto"
+                onClick={() => navigate("/servicios/SDetalles/grua")}
+              >
                 Más información
               </button>
             </div>
@@ -73,7 +78,11 @@ const Servicios = () => {
                   alquiler superior.
                 </p>
               </div>
-              <button className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors duration-300 mt-auto">
+              <button
+                className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors duration-300 mt-auto"
+                onClick={() => navigate("/servicios/SDetalles/serviciopremium")}
+                
+              >
                 Más información
               </button>
             </div>
@@ -100,7 +109,10 @@ const Servicios = () => {
                   tranquilidad.
                 </p>
               </div>
-              <button className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors duration-300 mt-auto">
+              <button
+                className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors duration-300 mt-auto"
+                onClick={() => navigate("/servicios/SDetalles/asistencia")}
+              >
                 Más información
               </button>
             </div>

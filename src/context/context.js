@@ -638,7 +638,6 @@ export const AppContextProvider = ({ children }) => {
       method: "POST",
       headers: myHeaders,
       body: raw,
-      mode: 'no-cors',
       redirect: "follow"
     };
 
@@ -651,7 +650,7 @@ export const AppContextProvider = ({ children }) => {
         return true
       })
       .catch((error) => {
-        toastCall("Error en el login")
+        toastCall("Error en el login"+error)
         return false
       });
 

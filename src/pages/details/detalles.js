@@ -44,7 +44,7 @@ const Details = () => {
         {
           nombre: car.nombre,
           precio: car.precio,
-          img: car.img[0],
+          img: car.img.lenght >0 ? car.img[0] : [],
           desde: dateFrom,
           hasta: dateTo,
         }

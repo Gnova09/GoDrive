@@ -14,7 +14,8 @@ export const AppContextProvider = ({ children }) => {
   const [liscart, setLiscart] = useState([]);
   const [detailCar, setdetailCar] = useState({});
 
-  const [cars, setCars] = useState([
+  const [cars, setCars] = useState([]);
+  /*const [cars, setCars] = useState([
     {
       nombre: "Toyota Corolla 2020",
       precio: 50,
@@ -559,7 +560,7 @@ export const AppContextProvider = ({ children }) => {
       combustible: "Gasolina",
       descripcion: "Un coupé deportivo con manejo excepcional, diseño elegante y una experiencia de conducción inolvidable. Ideal para los amantes de los autos de lujo y alto rendimiento.",
     },
-  ]);
+  ]);*/
 
   const [islogin, setIslogin] = useState(false);
   const [IsOpenSidebar, setIsOpenSidebar] = useState();
@@ -589,7 +590,7 @@ export const AppContextProvider = ({ children }) => {
     }
   };
 
-  const logear = async({ email, pass }) => {
+  const logear = async ({ email, pass }) => {
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -609,7 +610,7 @@ export const AppContextProvider = ({ children }) => {
 
     const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Cliente/login`, requestOptions)
       .then((response) => response.json())
-      .then((result) => {  
+      .then((result) => {
         setIslogin(true)
         setusers(result)
         toastCall("Logged")
@@ -620,11 +621,11 @@ export const AppContextProvider = ({ children }) => {
         return false
       });
 
-      return response
+    return response
 
   }
 
-  const logearAdmin = async({ email, pass }) => {
+  const logearAdmin = async ({ email, pass }) => {
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -643,19 +644,40 @@ export const AppContextProvider = ({ children }) => {
 
     const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Usuario/login`, requestOptions)
       .then((response) => response.json())
-      .then((result) => {  
+      .then((result) => {
         setIslogin(true)
         setusers(result)
         toastCall("Logged")
         return true
       })
       .catch((error) => {
-        toastCall("Error en el login"+error)
+        toastCall("Error en el login" + error)
         return false
       });
 
-      return response
+    return response
 
+  }
+
+  const GetVehiculos = async () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", users.token);
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Vehiculo/lista`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => { return result })
+      .catch((error) => {
+        toastCall("Error en el login")
+        return []
+      });
+
+    return response
   }
 
   const values = {
@@ -688,7 +710,8 @@ export const AppContextProvider = ({ children }) => {
     detailCar,
     setdetailCar,
     logear,
-    logearAdmin
+    logearAdmin,
+    GetVehiculos
   }; // States que serán visibles en el contexto.
 
   // Interface donde será expuesto como proveedor y envolverá la App.

@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CardOfCars from '../../components/home/cardOfCars'
 import Features from '../../components/home/feature'
 import useAppContext from '../../context/context'
 import Mapa from '../../components/maps/mapa'
-import Sidebar from '../../components/Sidebar/Sidebar'; 
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 export const Home = () => {
 
-  const { cars } = useAppContext()
+  const { cars, setCars, GetVehiculos } = useAppContext()
+
+  const obtenervehiculos = async () => {
+
+    try {
+      const vehiculos = await GetVehiculos(); // Asegúrate de que GetVehiculos sea una función asíncrona.
+      setCars(vehiculos);
+    } catch (error) {
+      console.error('Error fetching vehiculos:', error);
+    }
+  }
+  useEffect(() => {
+    obtenervehiculos()
+  }, [])
+
   return (
     <div className=' border border-gray-400 mx-20  p-0'>
 
@@ -29,26 +43,37 @@ export const Home = () => {
       </div>
       <div className='flex flex-row '>
 
-        <Sidebar/>
-      <div class="grid w-full items-center ml-3 justify-center grid-cols-3 gap-4 pt-2">
-        {
-          cars.map((carro) => {
-            return <CardOfCars carro={carro}  />
-          })
-        }
+        <Sidebar />
+        <div class="grid w-full items-center ml-3 justify-center grid-cols-3 gap-4 pt-2">
+          {
+            cars.length > 0 ?
+              cars.map((carro) => {
+                const carroClean = {
+                  img: carro.imagenes,
+                  precio: carro.costo_por_dia,
+                  nombre: `${carro.marca} ${carro.modelo} ${carro.year}`,
+                  descripcion: carro.descripcion,
+                  anio:carro.year,
+                  modelo: carro.modelo,
+                  marca: carro.marca
+                }
+                return <CardOfCars carro={carroClean} />
+              }) :
+              <h1>Cargando vehiculo</h1>
+          }
 
-      </div>
         </div>
+      </div>
 
       <Features />
 
-      <Mapa/>
+      <Mapa />
 
 
-      
-      
 
-      
+
+
+
     </div>
   )
 }

@@ -1,18 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DataTable from "../../../components/table/DataTable";
+import useAppContext from "../../../context/context";
 const Newvehiculos = () => {
   const [rentado, setRentado] = useState(false);
   const [imageBase64, setImageBase64] = useState(null);
   const [showmodal, setshowmodal] = useState(false);
   const [costoPorDia, setCostoPorDia] = useState(""); // Estado para el costo por día
+  const [row, setrow] = useState([]); // Estado para el costo por día
+  const { GetVehiculos } = useAppContext();
 
-  const row = [
+
+  const obtenervehiculos = async () => {
+
+    try {
+      const vehiculos = await GetVehiculos(); // Asegúrate de que GetVehiculos sea una función asíncrona.
+      setrow(vehiculos);
+    } catch (error) {
+      console.error('Error fetching vehiculos:', error);
+    }
+  }
+  useEffect(() => {
+    obtenervehiculos()
+  }, [])
+
+  /* const row = [
     { id: 1, marca: 'Toyota', modelo: 'Corolla', transmision: 'Automática', year: 2020, numero_Puertas: 4, numero_asientos: 5, costo_por_dia: 35 },
     { id: 2, marca: 'Honda', modelo: 'Civic', transmision: 'Manual', year: 2019, numero_Puertas: 4, numero_asientos: 5, costo_por_dia: 40 },
     { id: 3, marca: 'Chevrolet', modelo: 'Cruze', transmision: 'Automática', year: 2021, numero_Puertas: 4, numero_asientos: 5, costo_por_dia: 50 },
     { id: 4, marca: 'Ford', modelo: 'Fiesta', transmision: 'Manual', year: 2018, numero_Puertas: 4, numero_asientos: 5, costo_por_dia: 30 },
     { id: 5, marca: 'Nissan', modelo: 'Versa', transmision: 'Automática', year: 2022, numero_Puertas: 4, numero_asientos: 5, costo_por_dia: 45 },
-  ];
+  ]; */
   const column = [
     { field: 'id', headerName: 'Id', width: 80, },
     { field: 'marca', headerName: 'Marca', width: 130 },
@@ -64,19 +81,23 @@ const Newvehiculos = () => {
     setCostoPorDia(e.target.value); // Actualiza el estado del costo por día
   };
 
-  
+
 
   return (
     <div className="">
       <div className='w-full px-5 '>
         <h1 className=" font-bold text-3xl w-full flex items-center justify-center mb-3">Vehiculos</h1>
-        <DataTable className='  text-black ' column={column} row={row} />
+        {
+          row.length > 0 ?
+            <DataTable className='  text-black ' column={column} row={row} />
+            : <h1>NO EXISTEN VEHICULOS</h1>
+        }
       </div>
       <div className=" w-full flex justify-center items-center mt-4">
-        <button type="button" onClick={()=>setshowmodal(!showmodal)} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none ">Agregar</button>
+        <button type="button" onClick={() => setshowmodal(!showmodal)} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none ">Agregar</button>
       </div>
 
-      <form className={`${showmodal ? " relative":"hidden"} bg-[#E3F2FD] mx-auto p-4 rounded-[12px] sm:mb-8 lg:mb-12 shadow-[0_4px_6px_rgba(0,0,0,0.1),0_1px_3px_rgba(0,0,0,0.06)] border border-[#e2e8f0] max-w-[90%] sm:max-w-[80%] lg:max-w-2xl xl:max-w-3xl mt-[15px] mb-[80px]`}>
+      <form className={`${showmodal ? " relative" : "hidden"} bg-[#E3F2FD] mx-auto p-4 rounded-[12px] sm:mb-8 lg:mb-12 shadow-[0_4px_6px_rgba(0,0,0,0.1),0_1px_3px_rgba(0,0,0,0.06)] border border-[#e2e8f0] max-w-[90%] sm:max-w-[80%] lg:max-w-2xl xl:max-w-3xl mt-[15px] mb-[80px]`}>
         <div className="d-flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a href="/" className="d-flex align-items-center text-dark">
             <img

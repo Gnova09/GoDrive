@@ -73,7 +73,7 @@ const Details = () => {
         <div className="w-full lg:w-1/2">
           <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
             <img
-              src={car.img[selectedImage]}
+              src={`data:image/jpeg;base64,${car.img[selectedImage]}`}
               className="absolute block w-full h-full object-cover"
               alt={`Imagen ${selectedImage + 1}`}
             />
@@ -131,7 +131,7 @@ const Details = () => {
             {car.img.map((thumbnail, index) => (
               <img
                 key={index}
-                src={thumbnail}
+                src={`data:image/jpeg;base64,${thumbnail}`}
                 alt={`Miniatura ${index + 1}`}
                 className={`w-16 h-16 object-cover cursor-pointer rounded-lg ${index === selectedImage ? 'ring-2 ring-orange-500' : ''
                   }`}

@@ -680,9 +680,41 @@ export const AppContextProvider = ({ children }) => {
     return response
   }
 
+  const insertVehiculo = async (vehiculo) => {
+    
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", users.token);
+
+    const raw = JSON.stringify(vehiculo);
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Vehiculo`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+       // console.log(result)
+        toastCall("Creado")
+        return true
+      })
+      .catch((error) => {
+        console.log(requestOptions)
+        console.log(error)
+        toastCall("Error en la creacion" + error)
+        return false
+      });
+
+    return response
+  }
+
   const values = {
     // Funciones que son exportadas para manejo externo.
-
+    insertVehiculo,
     IsOpenAvatarmenu,
     IsOpenSidebar,
     setIsOpenSidebar,

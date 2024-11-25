@@ -10,11 +10,11 @@ import Navbar from './components/nav/navbar';
 import FooterAll from './components/footer';
 import Details from './pages/details/detalles';
 import Servicios from './pages/servicios/Servicios';
-import Newvehiculos from './pages/newVehiculos/newvehiculos';
 import HomeAdmin from './pages/admin/HomeAdmin';
 import SidebarAdmin from './components/SidebarAdmin/SidebarAdmin';
 import UsuariosAdmin from './pages/admin/usuarios/Usuarios';
 import FacturaAdmin from './pages/admin/Facturas/Factura';
+import Newvehiculos from './pages/admin/newVehiculos/newvehiculos';
 
 function App() {
   const location = useLocation();

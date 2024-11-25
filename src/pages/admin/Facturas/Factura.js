@@ -4,7 +4,7 @@ import DataTable from '../../../components/table/DataTable'
 const FacturaAdmin = () => {
 
 
-    const row =  [
+    const row = [
         { id: 1, dateCreated: '2024-11-21', name: 'Juan Pérez', nota: 'Primera compra' },
         { id: 2, dateCreated: '2024-11-20', name: 'María González', nota: 'Cliente frecuente' },
         { id: 3, dateCreated: '2024-11-19', name: 'Carlos López', nota: 'Factura especial' },
@@ -38,6 +38,10 @@ const FacturaAdmin = () => {
         <div>
             <div className='w-full px-5 '>
                 <DataTable className='  text-black ' column={column} row={row} />
+            </div>
+
+            <div className=" w-full flex justify-center items-center mt-4">
+                <button type="button"  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none ">Agregar</button>
             </div>
         </div>
     )

@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import axios from "axios";
+>>>>>>> 440042ea94221aecdefa91078427bfffdd935e40
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 //Context
@@ -37,6 +41,7 @@ export const AppContextProvider = ({ children }) => {
       nombre: "Honda Civic 2021",
       precio: 55,
       img: ["/assets/carsImgenes/Honda civic 2021/Civic Main.webp",
+<<<<<<< HEAD
         "/assets/carsImgenes/Honda civic 2021/Civic 2.webp",  
         "/assets/carsImgenes/Honda civic 2021/Civic 3.webp",
         "/assets/carsImgenes/Honda civic 2021/Civic 4.webp",
@@ -44,6 +49,15 @@ export const AppContextProvider = ({ children }) => {
         "/assets/carsImgenes/Honda civic 2021/Civic 6.webp",
         "/assets/carsImgenes/Honda civic 2021/Civic 7.webp",
         "/assets/carsImgenes/Honda civic 2021/Civic 8.webp",
+=======
+        "/assets/carsImgenes/Honda civic 2021/civic 2.webp",  
+        "/assets/carsImgenes/Honda civic 2021/civic 3.webp",
+        "/assets/carsImgenes/Honda civic 2021/civic 4.webp",
+        "/assets/carsImgenes/Honda civic 2021/civic 5.webp",
+        "/assets/carsImgenes/Honda civic 2021/civic 6.webp",
+        "/assets/carsImgenes/Honda civic 2021/civic 7.webp",
+        "/assets/carsImgenes/Honda civic 2021/civic 8.webp",
+>>>>>>> 440042ea94221aecdefa91078427bfffdd935e40
       ],
       modelo: "Civic",
       marca: "Honda",
@@ -200,6 +214,7 @@ export const AppContextProvider = ({ children }) => {
       nombre: "Lexus CT 200H 2017",
       precio: 40,
       img: ["/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h Main1.webp",    
+<<<<<<< HEAD
         "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 2.webp", 
         "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 3.webp", 
         "/assets/carsImgenes/Lexus CT200h 2017/Lexus CT200h 4.webp", 
@@ -212,6 +227,20 @@ export const AppContextProvider = ({ children }) => {
       marca: "Lexus",
       anio: 2017,
       combustible: "Híbrido",
+=======
+        "/assets/carsImgenes/Lexus CT200h 2017/CT 2.webp", 
+        "/assets/carsImgenes/Lexus CT200h 2017/CT 3.webp", 
+        "/assets/carsImgenes/Lexus CT200h 2017/CT 4.webp", 
+        "/assets/carsImgenes/Lexus CT200h 2017/CT 5.webp", 
+        "/assets/carsImgenes/Lexus CT200h 2017/CT 6.webp", 
+        "/assets/carsImgenes/Lexus CT200h 2017/CT 7.webp",    
+        "/assets/carsImgenes/Lexus CT200h 2017/CT 8.webp", 
+      ],
+      modelo: "CT 200h",
+      marca: "Lexus",
+      anio: 2017,
+      combustible: "Gasolina",
+>>>>>>> 440042ea94221aecdefa91078427bfffdd935e40
       descripcion: "Este hatchback híbrido combina lujo y sostenibilidad. Su diseño elegante y su tecnología avanzada lo convierten en una opción ideal para quienes buscan eficiencia y comodidad.",
     },
     {
@@ -566,6 +595,7 @@ export const AppContextProvider = ({ children }) => {
   const [form606Data, setform606Data] = useState([]);
   const [proveedor, setproveedor] = useState([]);
   const [newform, setnewform] = useState([]);
+<<<<<<< HEAD
   const [users, setusers] = useState([
     {
       email: "Georges@gmail.com",
@@ -575,6 +605,12 @@ export const AppContextProvider = ({ children }) => {
 
   //ComponentDidMouunt
   useEffect(() => {}, []);
+=======
+  const [users, setusers] = useState({});
+
+  //ComponentDidMouunt
+  useEffect(() => { }, []);
+>>>>>>> 440042ea94221aecdefa91078427bfffdd935e40
   const toastCall = (text) => {
     setTextToast(text);
     setShowToast(true);
@@ -584,6 +620,7 @@ export const AppContextProvider = ({ children }) => {
       setTextToast("");
     }, 3000);
   };
+<<<<<<< HEAD
 
   const verifyLogin = () => {
     if (islogin) {
@@ -624,6 +661,120 @@ export const AppContextProvider = ({ children }) => {
     setdetailCar,
   }; // States que serán visibles en el contexto.
 
+=======
+
+  const verifyLogin = () => {
+    if (islogin) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const logear = async({ email, pass }) => {
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      "email": email,
+      "password": pass
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      mode: 'no-cors',
+      redirect: "follow"
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Cliente/login`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {  
+        setIslogin(true)
+        setusers(result)
+        toastCall("Logged")
+        return true
+      })
+      .catch((error) => {
+        toastCall("Error en el login")
+        return false
+      });
+
+      return response
+
+  }
+
+  const logearAdmin = async({ email, pass }) => {
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      "email": email,
+      "password": pass
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      mode: 'no-cors',
+      redirect: "follow"
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Usuario/login`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {  
+        setIslogin(true)
+        setusers(result)
+        toastCall("Logged")
+        return true
+      })
+      .catch((error) => {
+        toastCall("Error en el login")
+        return false
+      });
+
+      return response
+
+  }
+
+  const values = {
+    // Funciones que son exportadas para manejo externo.
+
+    IsOpenAvatarmenu,
+    IsOpenSidebar,
+    setIsOpenSidebar,
+    setIsOpenAvatarmenu,
+    form606Data,
+    setform606Data,
+    proveedor,
+    setproveedor,
+    newform,
+    setnewform,
+    islogin,
+    setIslogin,
+    users,
+    setusers,
+    verifyLogin,
+    toastCall,
+    liscart,
+    setLiscart,
+    cars,
+    setCars,
+    showToast,
+    setShowToast,
+    textToast,
+    setTextToast,
+    detailCar,
+    setdetailCar,
+    logear,
+    logearAdmin
+  }; // States que serán visibles en el contexto.
+
+>>>>>>> 440042ea94221aecdefa91078427bfffdd935e40
   // Interface donde será expuesto como proveedor y envolverá la App.
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 };

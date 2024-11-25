@@ -54,7 +54,7 @@ const ShoppingCart = ({ showCart }) => {
           liscart.map(({ nombre, precio, img, desde, hasta }) => {
             return (
               <div className='flex flex-row mb-3 ml-3 border-b border-gray-500  '>
-                <img className='h-[100px]' src={img} alt={`${nombre} imagen`} />
+                <img className='h-[100px]' src={img[0]} alt={`${nombre} imagen`} />
                 <div className='flex flex-col'>
                   <span className=' font-bold ml-2'>{nombre}</span>
                   <span className=' ml-2'>Precio por dia: {precio}</span>

@@ -4,30 +4,30 @@ import { useNavigate } from 'react-router-dom';
 
 const ShoppingCart = ({ showCart }) => {
 
-  const { verifyLogin,islogin, toastCall, liscart, setLiscart } = useAppContext()
+  const { verifyLogin, islogin, toastCall, liscart, setLiscart } = useAppContext()
   const navigate = useNavigate();
 
-  const handleDeleteCar = (nombre) =>{
-    const listOfCarts = liscart.filter(car => car.nombre !== nombre )
+  const handleDeleteCar = (nombre) => {
+    const listOfCarts = liscart.filter(car => car.nombre !== nombre)
 
     setLiscart(listOfCarts)
 
     toastCall(`Carro ${nombre} Eliminado`)
   }
 
-  const handlePago = ()=> {
-    if(islogin ){
-      if(liscart.lenght > 0){
-        
-              showCart(false)
-              setLiscart([])
-              toastCall('Le llegara el Link de pago y la factura via correo')
-      }else{
+  const handlePago = () => {
+    if (islogin) {
+      if (liscart.lenght > 0) {
+
+        showCart(false)
+        setLiscart([])
+        toastCall('Le llegara el Link de pago y la factura via correo')
+      } else {
         showCart(false)
         toastCall('No existe NINGUN carro agregado')
       }
 
-    }else{
+    } else {
       toastCall('Debe iniciar sesion')
       navigate("/login")
     }
@@ -54,7 +54,8 @@ const ShoppingCart = ({ showCart }) => {
           liscart.map(({ nombre, precio, img, desde, hasta }) => {
             return (
               <div className='flex flex-row mb-3 ml-3 border-b border-gray-500  '>
-                <img className='h-[100px]' src={img.lenght > 0 ? img[0] : null } alt={`${nombre} imagen`} />
+
+                <img className='h-[100px]' src={`data:image/jpeg;base64,${img[0]}`} alt={`${nombre} imagen`} />
                 <div className='flex flex-col'>
                   <span className=' font-bold ml-2'>{nombre}</span>
                   <span className=' ml-2'>Precio por dia: {precio}</span>
@@ -73,7 +74,7 @@ const ShoppingCart = ({ showCart }) => {
                   </button>
 
                 </div>
-                <button type="button" onClick={()=>{handleDeleteCar(nombre)}} class="text-black flex justify-center items-center hover:bg-red-600 bg-gray-300 hover:text-gray-900 rounded text-sm w-8  ms-auto  dark:hover:bg-gray-600 dark:hover:text-white" >
+                <button type="button" onClick={() => { handleDeleteCar(nombre) }} class="text-black flex justify-center items-center hover:bg-red-600 bg-gray-300 hover:text-gray-900 rounded text-sm w-8  ms-auto  dark:hover:bg-gray-600 dark:hover:text-white" >
                   <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
                   </svg>
@@ -86,7 +87,7 @@ const ShoppingCart = ({ showCart }) => {
 
       </div>
       <div className='w-full flex bottom-0 justify-center items-center'>
-        <button type="button" onClick={()=>handlePago()} class="focus:outline-none text-white font-semibold   bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300  rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Procceder al pago</button>
+        <button type="button" onClick={() => handlePago()} class="focus:outline-none text-white font-semibold   bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300  rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Procceder al pago</button>
       </div>
 
 

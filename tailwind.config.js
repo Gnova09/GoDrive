@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        'fade-right': 'fadeRight 2s ease-in-out', // Cambiar la duración a 2s
+        'fade-right': 'fadeRight 2s ease-in-out', 
       },
       keyframes: {
         fadeRight: {

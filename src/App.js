@@ -11,11 +11,17 @@ import FooterAll from './components/footer';
 import Details from './pages/details/detalles';
 import Servicios from './pages/servicios/Servicios';
 import Newvehiculos from './pages/newVehiculos/newvehiculos';
-import SDetalles from '../src/components/servicios/ui/SDetalles';
+import HomeAdmin from './pages/admin/HomeAdmin';
+import SidebarAdmin from './components/SidebarAdmin/SidebarAdmin';
+import UsuariosAdmin from './pages/admin/usuarios/Usuarios';
+import SDetalles from './components/servicios/ui/SDetalles';
 
 function App() {
   const location = useLocation();
-  
+  const hideNavbarFooter =
+    location.pathname === '/login' ||
+    location.pathname === '/register' ||
+    location.pathname.startsWith('/admin');
 
   return (
     <>
@@ -27,13 +33,21 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/details" element={<Details />} />
-        <Route path="/admin/newvehiculos" element={<Newvehiculos />} />
 
+        {/* Rutas de administrador con Sidebar */}
+        <Route path="/admin" element={<SidebarAdmin />}>
+          <Route path="" element={<HomeAdmin />} />
+          <Route path="newvehiculos" element={<Newvehiculos />} />
+          <Route path="usuarios" element={<UsuariosAdmin />} />
+        </Route>
+
+        <Route path="/admin/login" element={<LoginAdmin />} />
+
+        {/* Rutas para detalles de servicios */}
         <Route path="/servicios/SDetalles" element={<SDetalles />} />
         <Route path="/servicios/SDetalles/grua" element={<SDetalles />} />
         <Route path="/servicios/SDetalles/asistencia" element={<SDetalles />} />
         <Route path="/servicios/SDetalles/serviciopremium" element={<SDetalles />} />
-
       </Routes>
       {!hideNavbarFooter && <FooterAll />}
     </>

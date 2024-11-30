@@ -147,7 +147,6 @@ const Details = () => {
             <p><strong>Marca:</strong> {car?.marca}</p>
             <p><strong>Modelo:</strong> {car?.modelo}</p>
             <p><strong>Año:</strong> {car.anio}</p>
-            <p><strong>Combustible:</strong> {car?.combustible}</p>
             <p className="text-justify mt-2">
               <strong>Descripción:</strong> {car?.descripcion}
             </p>

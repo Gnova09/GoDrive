@@ -1,13 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 const Sidebar = () => {
+  const [marca, setMarca] = useState('');
+  const [modelo, setModelo] = useState('');
+  const [transmision, setTransmision] = useState('');
+  const [anio, setAnio] = useState('');
+
+  const handleSearch = async () => {
+    try {
+      // Construcción del objeto de filtros
+      const filtros = {
+        marca,
+        modelo,
+        transmision,
+        anio,
+      };
+
+      // Llamada a la API
+      const response = await axios.post(
+        'http://www.godrive.somee.com/api/Vehiculo/filtrar',
+        filtros,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      // Mostrar resultados en la consola
+      console.log('Resultados de la búsqueda:', response.data);
+      alert('Vehículos encontrados, revisa la consola para ver los detalles.');
+    } catch (error) {
+      console.error('Error al buscar vehículos:', error.response || error.message);
+      alert('Hubo un problema al buscar los vehículos.');
+    }
+  };
+
   return (
     <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-xs">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Filtrar vehículo</h2>
 
+      {/* Filtro por Marca */}
       <div className="mb-4">
         <label className="text-gray-700 font-semibold">Marca</label>
-        <select className="mt-2 w-full px-4 py-2 bg-gray-50 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        <select
+          className="mt-2 w-full px-4 py-2 bg-gray-50 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          value={marca}
+          onChange={(e) => setMarca(e.target.value)}
+        >
           <option value="">Seleccione una marca</option>
           <option>Audi</option>
           <option>Chevrolet</option>
@@ -27,9 +68,14 @@ const Sidebar = () => {
         </select>
       </div>
 
+      {/* Filtro por Modelo */}
       <div className="mb-4">
         <label className="text-gray-700 font-semibold">Modelo</label>
-        <select className="mt-2 w-full px-4 py-2 bg-gray-50 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        <select
+          className="mt-2 w-full px-4 py-2 bg-gray-50 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          value={modelo}
+          onChange={(e) => setModelo(e.target.value)}
+        >
           <option value="">Seleccione un modelo</option>
           <option>Q7</option>
           <option>Camaro</option>
@@ -64,18 +110,28 @@ const Sidebar = () => {
         </select>
       </div>
 
+      {/* Filtro por Transmisión */}
       <div className="mb-4">
         <label className="text-gray-700 font-semibold">Transmisión</label>
-        <select className="mt-2 w-full px-4 py-2 bg-gray-50 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        <select
+          className="mt-2 w-full px-4 py-2 bg-gray-50 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          value={transmision}
+          onChange={(e) => setTransmision(e.target.value)}
+        >
           <option value="">Seleccione una transmisión</option>
           <option>Manual</option>
           <option>Automática</option>
         </select>
       </div>
 
+      {/* Filtro por Año */}
       <div className="mb-4">
         <label className="text-gray-700 font-semibold">Año</label>
-        <select className="mt-2 w-full px-4 py-2 bg-gray-50 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        <select
+          className="mt-2 w-full px-4 py-2 bg-gray-50 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          value={anio}
+          onChange={(e) => setAnio(e.target.value)}
+        >
           <option value="">Seleccione un año</option>
           <option>2016</option>
           <option>2017</option>
@@ -89,7 +145,11 @@ const Sidebar = () => {
         </select>
       </div>
 
-      <button className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200">
+      {/* Botón de Buscar */}
+      <button
+        onClick={handleSearch}
+        className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200"
+      >
         Buscar vehículo
       </button>
     </div>

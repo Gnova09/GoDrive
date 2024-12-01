@@ -15,6 +15,7 @@ import SidebarAdmin from './components/SidebarAdmin/SidebarAdmin';
 import UsuariosAdmin from './pages/admin/usuarios/Usuarios';
 import FacturaAdmin from './pages/admin/Facturas/Factura';
 import Newvehiculos from './pages/admin/newVehiculos/newvehiculos';
+import SDetalles from './components/servicios/ui/SDetalles';
 
 function App() {
   const location = useLocation();

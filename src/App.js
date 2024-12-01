@@ -43,6 +43,12 @@ function App() {
         </Route>
 
         <Route path="/admin/login" element={<LoginAdmin />} />
+
+        {/* Rutas para detalles de servicios */}
+        <Route path="/servicios/SDetalles" element={<SDetalles />} />
+        <Route path="/servicios/SDetalles/grua" element={<SDetalles />} />
+        <Route path="/servicios/SDetalles/asistencia" element={<SDetalles />} />
+        <Route path="/servicios/SDetalles/serviciopremium" element={<SDetalles />} />
       </Routes>
       {!hideNavbarFooter && <FooterAll />}
     </>

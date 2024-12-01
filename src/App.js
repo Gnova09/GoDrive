@@ -10,11 +10,11 @@ import Navbar from './components/nav/navbar';
 import FooterAll from './components/footer';
 import Details from './pages/details/detalles';
 import Servicios from './pages/servicios/Servicios';
-import Newvehiculos from './pages/newVehiculos/newvehiculos';
 import HomeAdmin from './pages/admin/HomeAdmin';
 import SidebarAdmin from './components/SidebarAdmin/SidebarAdmin';
 import UsuariosAdmin from './pages/admin/usuarios/Usuarios';
-import SDetalles from './components/servicios/ui/SDetalles';
+import FacturaAdmin from './pages/admin/Facturas/Factura';
+import Newvehiculos from './pages/admin/newVehiculos/newvehiculos';
 
 function App() {
   const location = useLocation();
@@ -39,6 +39,7 @@ function App() {
           <Route path="" element={<HomeAdmin />} />
           <Route path="newvehiculos" element={<Newvehiculos />} />
           <Route path="usuarios" element={<UsuariosAdmin />} />
+          <Route path="facturas" element={<FacturaAdmin />} />
         </Route>
 
         <Route path="/admin/login" element={<LoginAdmin />} />

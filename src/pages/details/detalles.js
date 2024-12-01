@@ -44,7 +44,7 @@ const Details = () => {
         {
           nombre: car.nombre,
           precio: car.precio,
-          img: car.img[0],
+          img: car.img.lenght >0 ? car.img[0] : [],
           desde: dateFrom,
           hasta: dateTo,
         }
@@ -73,7 +73,7 @@ const Details = () => {
         <div className="w-full lg:w-1/2">
           <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
             <img
-              src={car.img[selectedImage]}
+              src={`data:image/jpeg;base64,${car.img[selectedImage]}`}
               className="absolute block w-full h-full object-cover"
               alt={`Imagen ${selectedImage + 1}`}
             />
@@ -131,7 +131,7 @@ const Details = () => {
             {car.img.map((thumbnail, index) => (
               <img
                 key={index}
-                src={thumbnail}
+                src={`data:image/jpeg;base64,${thumbnail}`}
                 alt={`Miniatura ${index + 1}`}
                 className={`w-16 h-16 object-cover cursor-pointer rounded-lg ${index === selectedImage ? 'ring-2 ring-orange-500' : ''
                   }`}
@@ -147,7 +147,6 @@ const Details = () => {
             <p><strong>Marca:</strong> {car?.marca}</p>
             <p><strong>Modelo:</strong> {car?.modelo}</p>
             <p><strong>Año:</strong> {car.anio}</p>
-            <p><strong>Combustible:</strong> {car?.combustible}</p>
             <p className="text-justify mt-2">
               <strong>Descripción:</strong> {car?.descripcion}
             </p>

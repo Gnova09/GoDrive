@@ -16,6 +16,7 @@ import UsuariosAdmin from './pages/admin/usuarios/Usuarios';
 import FacturaAdmin from './pages/admin/Facturas/Factura';
 import Newvehiculos from './pages/admin/newVehiculos/newvehiculos';
 import SDetalles from './components/servicios/ui/SDetalles';
+import Contactos from './pages/contactos/contactos';
 
 function App() {
   const location = useLocation();
@@ -34,6 +35,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/details" element={<Details />} />
+        <Route path="/contactos" element={<Contactos />} />
 
         {/* Rutas de administrador con Sidebar */}
         <Route path="/admin" element={<SidebarAdmin />}>

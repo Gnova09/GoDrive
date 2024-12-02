@@ -661,7 +661,7 @@ export const AppContextProvider = ({ children }) => {
 
   const GetVehiculos = async () => {
     const myHeaders = new Headers();
-    myHeaders.append("Authorization", users.token);
+    myHeaders.append("Authorization", users.token || process.env.REACT_APP_TOKEN_BACKEND);
 
     const requestOptions = {
       method: "GET",

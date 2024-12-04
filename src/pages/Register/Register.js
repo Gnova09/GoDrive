@@ -6,28 +6,32 @@ export const Register = () => {
   const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [pass, setpass] = useState("");
-  const [pass2, setpass2] = useState("");
   const [nombre, setnombre] = useState("");
   const [apellido, setapellido] = useState("");
   const [telefono, settelefono] = useState("");
   const [tipoIdentificacion, settipoIdentificacion] = useState('');
   const [numeroIdentificacion, setnumeroIdentificacion] = useState('');
-  const { toastCall } = useAppContext();
+  const { toastCall,RegistrarCliente } = useAppContext();
 
-  const handleSubmitRegister = (event) => {
+  const handleSubmitRegister = async (event) => {
     event.preventDefault();
-    // eslint-disable-next-line
-    const register = {
+    
+    const cliente = {
       email,
       pass,
-      pass2,
       nombre,
       apellido,
       telefono,
+      tipoIdentificacion,
+      numeroIdentificacion
     };
+    const responseCreateCliente = await RegistrarCliente({cliente})
+    if(responseCreateCliente.success === true){
+
+      navigate("/login");
+    }
     //TODO: ENVIAR AL API DE BACKEND PARA QUE LO CREE
     toastCall("Registro completado ");
-    navigate("/");
   };
 
   return (
@@ -122,7 +126,6 @@ export const Register = () => {
                     <option value="" disabled selected>
                       Tarjeta de identificación
                     </option>
-                    <option value=""></option>
                     <option value="cedula">Cédula</option>
                     <option value="pasaporte">Pasaporte</option>
                   </select>
@@ -143,7 +146,7 @@ export const Register = () => {
                     id="numero_identificacion"
                     class="block py-2.5 px-0 w-full text-sm text-black bg-transparent  border-b-2 border-gray appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=""
-                    maxLength={20}
+                    maxLength={11}
                     required
                   />
                   <label
@@ -172,23 +175,7 @@ export const Register = () => {
                   </label>
                 </div>
 
-                <div class="relative z-0 w-full mb-5 group">
-                  <input
-                    type="password"
-                    onChange={(e) => setpass2(e.target.value)}
-                    name="repeat_password"
-                    id="floating_repeat_password"
-                    class="block py-2.5 px-0 w-full text-sm text-black bg-transparent  border-b-2 border-gray appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=""
-                    required
-                  />
-                  <label
-                    for="floating_repeat_password"
-                    class="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Confirmar contraseña
-                  </label>
-                </div>
+                
 
                 <button
                   type="submit"
@@ -199,7 +186,7 @@ export const Register = () => {
 
                 <p class="text-center mt-3">
                   ¿Ya tienes cuenta?{" "}
-                  <a href="/" class="text-primary">
+                  <a href="/login" class="text-primary">
                     Iniciar sesion
                   </a>
                 </p>

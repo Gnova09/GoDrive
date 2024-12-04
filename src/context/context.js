@@ -604,7 +604,7 @@ export const AppContextProvider = ({ children }) => {
       method: "POST",
       headers: myHeaders,
       body: raw,
-     // mode: 'no-cors',
+      // mode: 'no-cors',
       redirect: "follow"
     };
 
@@ -659,6 +659,40 @@ export const AppContextProvider = ({ children }) => {
 
   }
 
+  //Registrar clientes
+  const RegistrarCliente = async ({cliente}) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", users.token );
+
+    const raw = JSON.stringify(
+      {
+        "nombre": cliente.nombre,
+        "apellido": cliente.apellido,
+        "correo": cliente.email,
+        "password": cliente.pass,
+        "tipo_identificacion": cliente.tipoIdentificacion,
+        "numero_identificacion": cliente.numeroIdentificacion
+      }
+    );
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    await fetch("http://www.godrive.somee.com/api/Cliente/registrar", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {return result})
+      .catch((error) => {
+        toastCall("Error Creando")
+        console.log(error)
+        return []
+      });
+  }
+  //vehiculos
   const GetVehiculos = async () => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", users.token || process.env.REACT_APP_TOKEN_BACKEND);
@@ -673,7 +707,7 @@ export const AppContextProvider = ({ children }) => {
       .then((response) => response.json())
       .then((result) => { return result })
       .catch((error) => {
-        toastCall("Error en el login")
+        toastCall("Error obteniendo vehiculos")
         return []
       });
 
@@ -681,7 +715,7 @@ export const AppContextProvider = ({ children }) => {
   }
 
   const insertVehiculo = async (vehiculo) => {
-    
+
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", users.token);
@@ -698,7 +732,7 @@ export const AppContextProvider = ({ children }) => {
     const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Vehiculo`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-       // console.log(result)
+        // console.log(result)
         toastCall("Creado")
         return true
       })
@@ -743,7 +777,8 @@ export const AppContextProvider = ({ children }) => {
     setdetailCar,
     logear,
     logearAdmin,
-    GetVehiculos
+    GetVehiculos,
+    RegistrarCliente
   }; // States que serán visibles en el contexto.
 
   // Interface donde será expuesto como proveedor y envolverá la App.

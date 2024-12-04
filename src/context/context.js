@@ -612,7 +612,7 @@ export const AppContextProvider = ({ children }) => {
     try {
       const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Cliente/login`, requestOptions);
       const result = await response.json();
-    
+
       if (result.success) {
         setIslogin(true);
         setusers(result);
@@ -664,10 +664,10 @@ export const AppContextProvider = ({ children }) => {
   }
 
   //Registrar clientes
-  const RegistrarCliente = async ({cliente}) => {
+  const RegistrarCliente = async ({ cliente }) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", users.token );
+    myHeaders.append("Authorization", users.token);
 
     const raw = JSON.stringify(
       {
@@ -687,9 +687,9 @@ export const AppContextProvider = ({ children }) => {
       redirect: "follow"
     };
 
-    await fetch("http://www.godrive.somee.com/api/Cliente/registrar", requestOptions)
+    await fetch("https://www.godrive.somee.com/api/Cliente/registrar", requestOptions)
       .then((response) => response.json())
-      .then((result) => {return result})
+      .then((result) => { return result })
       .catch((error) => {
         toastCall("Error Creando")
         console.log(error)
@@ -750,6 +750,27 @@ export const AppContextProvider = ({ children }) => {
     return response
   }
 
+  const deleteVehiculo = async (id) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", users.token);
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+
+    const response = await fetch(`https://www.godrive.somee.com/api/Vehiculo/${id}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {return(result)})
+      .catch((error) => console.error(error));
+
+
+      if(response.success){
+        setCars(GetVehiculos())
+      }
+      return response
+  }
   const values = {
     // Funciones que son exportadas para manejo externo.
     insertVehiculo,
@@ -783,7 +804,9 @@ export const AppContextProvider = ({ children }) => {
     logearAdmin,
     GetVehiculos,
     RegistrarCliente,
-    filterescars, setfilterescarsCars
+    filterescars,
+    setfilterescarsCars,
+    deleteVehiculo
   }; // States que serán visibles en el contexto.
 
   // Interface donde será expuesto como proveedor y envolverá la App.

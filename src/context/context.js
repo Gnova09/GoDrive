@@ -15,6 +15,7 @@ export const AppContextProvider = ({ children }) => {
   const [detailCar, setdetailCar] = useState({});
 
   const [cars, setCars] = useState([]);
+  const [filterescars, setfilterescarsCars] = useState([]);
   /*const [cars, setCars] = useState([
     {
       nombre: "Toyota Corolla 2020",
@@ -596,7 +597,7 @@ export const AppContextProvider = ({ children }) => {
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-      "email": email,
+      "correo": email,
       "password": pass
     });
 
@@ -608,21 +609,24 @@ export const AppContextProvider = ({ children }) => {
       redirect: "follow"
     };
 
-    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Cliente/login`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setIslogin(true)
-        setusers(result)
-        toastCall("Logged")
-        return true
-      })
-      .catch((error) => {
-        toastCall("Error en el login")
-        return false
-      });
-
-    return response
-
+    try {
+      const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Cliente/login`, requestOptions);
+      const result = await response.json();
+    
+      if (result.success) {
+        setIslogin(true);
+        setusers(result);
+        toastCall("Logged");
+        return true;
+      } else {
+        toastCall("Login failed");
+        return false;
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      toastCall("An error occurred");
+      return false;
+    }
   }
 
   const logearAdmin = async ({ email, pass }) => {
@@ -778,7 +782,8 @@ export const AppContextProvider = ({ children }) => {
     logear,
     logearAdmin,
     GetVehiculos,
-    RegistrarCliente
+    RegistrarCliente,
+    filterescars, setfilterescarsCars
   }; // States que serán visibles en el contexto.
 
   // Interface donde será expuesto como proveedor y envolverá la App.

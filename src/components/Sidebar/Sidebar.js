@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import useAppContext from '../../context/context';
 
 const Sidebar = () => {
   const [marca, setMarca] = useState('');
@@ -7,34 +8,12 @@ const Sidebar = () => {
   const [transmision, setTransmision] = useState('');
   const [anio, setAnio] = useState('');
 
+  const {cars, setfilterescarsCars} = useAppContext()
+
   const handleSearch = async () => {
-    try {
-      // Construcción del objeto de filtros
-      const filtros = {
-        marca,
-        modelo,
-        transmision,
-        anio,
-      };
-
-      // Llamada a la API
-      const response = await axios.post(
-        'http://www.godrive.somee.com/api/Vehiculo/filtrar',
-        filtros,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      // Mostrar resultados en la consola
-      console.log('Resultados de la búsqueda:', response.data);
-      alert('Vehículos encontrados, revisa la consola para ver los detalles.');
-    } catch (error) {
-      console.error('Error al buscar vehículos:', error.response || error.message);
-      alert('Hubo un problema al buscar los vehículos.');
-    }
+        const filterCars = cars.filter((item)=> item.modelo === modelo || item.marca === marca || item.transmision === transmision || item.year === anio)
+        setfilterescarsCars(filterCars.length > 0 ? filterCars : cars);
+       
   };
 
   return (

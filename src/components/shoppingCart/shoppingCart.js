@@ -17,7 +17,7 @@ const ShoppingCart = ({ showCart }) => {
 
   const handlePago = () => {
     if (islogin) {
-      if (liscart.lenght > 0) {
+      if (liscart.length > 0) {
 
         showCart(false)
         setLiscart([])

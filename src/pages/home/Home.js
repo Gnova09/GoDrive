@@ -7,13 +7,14 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 
 export const Home = () => {
 
-  const { cars, setCars, GetVehiculos } = useAppContext()
+  const { cars, setCars, GetVehiculos, setfilterescarsCars,filterescars } = useAppContext()
 
   const obtenervehiculos = async () => {
 
     try {
       const vehiculos = await GetVehiculos(); // Asegúrate de que GetVehiculos sea una función asíncrona.
       setCars(vehiculos);
+      setfilterescarsCars(vehiculos)
     } catch (error) {
       console.error('Error fetching vehiculos:', error);
     }
@@ -47,7 +48,7 @@ export const Home = () => {
         <div class="grid w-full items-center ml-3 justify-center grid-cols-3 gap-4 pt-2">
           {
             cars.length > 0 ?
-              cars.map((carro) => {
+            filterescars.map((carro) => {
                 const carroClean = {
                   img: carro.imagenes,
                   precio: carro.costo_por_dia,

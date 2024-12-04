@@ -11,7 +11,7 @@ const Sidebar = () => {
   const {cars, setfilterescarsCars} = useAppContext()
 
   const handleSearch = async () => {
-        const filterCars = cars.filter((item)=> item.modelo === modelo || item.marca === marca || item.transmision === transmision || item.year === anio)
+        const filterCars = cars.filter((item)=> item.modelo === modelo || item.marca === marca || item.transmision === transmision || item.year == anio)
         setfilterescarsCars(filterCars.length > 0 ? filterCars : cars);
        
   };

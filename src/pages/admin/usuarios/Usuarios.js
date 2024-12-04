@@ -4,8 +4,9 @@ import DataTable from "../../../components/table/DataTable";
 import useAppContext from "../../../context/context"; // Importar el contexto
 
 const UsuariosAdmin = () => {
-  const { users } = useAppContext(); // Obtener el token del contexto
+  const { users,Getusuarios } = useAppContext(); // Obtener el token del contexto
   const [showForm, setShowForm] = useState(false); // Estado para mostrar u ocultar el formulario
+  const [row, setrow] = useState(false); // Estado para mostrar u ocultar el formulario
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -13,38 +14,23 @@ const UsuariosAdmin = () => {
     password: "",
   });
 
-  let row = [
- 
-  ];
+  
 
   const obtenervehiculos = async () => {
-
     try {
-      const myHeaders = new Headers();
-      myHeaders.append("Authorization", `Bearer ${users.token}`);
-      
-      const raw = "";
-      
-      const requestOptions = {
-        method: "GET",
-        headers: myHeaders,
-        redirect: "follow"
-      };
-      
-     await fetch("http://www.godrive.somee.com/api/Usuario/listado", requestOptions)
-        .then((response) => response.json())
-        .then((result) => {row = result.map((item, index) => ({
-          id: index + 1,
-          Nombre: item.nombre,
-          Apellido: item.apellido,
-          Email: item.email,
-          Username: item.userName.split('@')[0], // Extraer solo el nombre de usuario
-          Fechaderegistro: item.fecha_registro.split('T')[0] // Solo la fecha
-      }));})
-        .catch((error) => console.error(error));
+      const usuarios = await Getusuarios(); 
+      setrow( usuarios.map((item, index) => ({
+        id: index + 1,
+        Nombre: item.nombre,
+        Apellido: item.apellido,
+        Email: item.email,
+        Username: item.userName.split('@')[0], // Extraer solo el nombre de usuario
+        Fechaderegistro: item.fecha_registro.split('T')[0] // Solo la fecha
+    })))
     } catch (error) {
-      console.error('Error fetching vehiculos:', error);
+      console.log(error)
     }
+
   }
   useEffect(() => {
     obtenervehiculos()
@@ -93,7 +79,7 @@ const UsuariosAdmin = () => {
         "http://www.godrive.somee.com/api/Usuario/registrar",
         requestOptions
       );
-      
+
       if (response.ok) {
         const result = await response.json();
         alert("Usuario registrado exitosamente");
@@ -123,7 +109,9 @@ const UsuariosAdmin = () => {
       {/* Tabla de Usuarios */}
       <div className="w-full px-5 text-center">
         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Usuarios</h2>
-        <DataTable className="text-black" column={column} row={row} />
+        {row.length > 0 ?
+        <DataTable className="text-black" column={column} row={row} /> :
+        <h1>Cargando los Usuarios</h1>}
       </div>
 
       {/* Botón para agregar usuario */}
@@ -202,8 +190,8 @@ const UsuariosAdmin = () => {
             </Button>
           </form>
         </div>
-        
-        
+
+
       )}
     </div>
   );

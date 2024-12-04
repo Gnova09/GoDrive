@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextInput, Button, Label } from "flowbite-react";
 import DataTable from "../../../components/table/DataTable";
-import axios from "axios";
+import useAppContext from "../../../context/context"; // Importar el contexto
 
 const UsuariosAdmin = () => {
+  const { users } = useAppContext(); // Obtener el token del contexto
   const [showForm, setShowForm] = useState(false); // Estado para mostrar u ocultar el formulario
   const [formData, setFormData] = useState({
     nombre: "",
@@ -12,13 +13,42 @@ const UsuariosAdmin = () => {
     password: "",
   });
 
-  const row = [
-    { id: 1, Nombre: 'Brayan', Apellido: 'Pérez', Email: 'Brayanperez01@gmail.com', Username: 'Brayanperez01', Fechaderegistro: '2022-01-01' },
-    { id: 2, Nombre: 'George', Apellido: 'González', Email: 'Georgegonzales12@gmail.com', Username: 'Georgegonzales12', Fechaderegistro: '2022-01-02' },
-    { id: 3, Nombre: 'Cesar', Apellido: 'López', Email: 'Cesarlopez99@gmail.com', Username: 'Cesarlopez99', Fechaderegistro: '2022-01-03' },
-    { id: 4, Nombre: 'Justin', Apellido: 'Rodríguez', Email: 'Justinrodriguezzz@gmail.com', Username: 'Justinrodriguezzz', Fechaderegistro: '2022-01-04' },
-    { id: 5, Nombre: 'Hermes', Apellido: 'Mateo', Email: 'Hermesmateo0123@gmail.com', Username: 'Hermesmateo0123', Fechaderegistro: '2022-01-05' },
+  let row = [
+ 
   ];
+
+  const obtenervehiculos = async () => {
+
+    try {
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer ${users.token}`);
+      
+      const raw = "";
+      
+      const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow"
+      };
+      
+     await fetch("http://www.godrive.somee.com/api/Usuario/listado", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {row = result.map((item, index) => ({
+          id: index + 1,
+          Nombre: item.nombre,
+          Apellido: item.apellido,
+          Email: item.email,
+          Username: item.userName.split('@')[0], // Extraer solo el nombre de usuario
+          Fechaderegistro: item.fecha_registro.split('T')[0] // Solo la fecha
+      }));})
+        .catch((error) => console.error(error));
+    } catch (error) {
+      console.error('Error fetching vehiculos:', error);
+    }
+  }
+  useEffect(() => {
+    obtenervehiculos()
+  }, [])
 
   const column = [
     { field: 'id', headerName: 'ID', width: 170 },
@@ -39,16 +69,35 @@ const UsuariosAdmin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("http://www.godrive.somee.com/api/Usuario/registrar", formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
 
-      if (response.status === 200 || response.status === 201) {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${users.token}`); // Incluir el token desde el contexto
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      nombre: formData.nombre,
+      apellido: formData.apellido,
+      correo: formData.correo,
+      password: formData.password,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    try {
+      const response = await fetch(
+        "http://www.godrive.somee.com/api/Usuario/registrar",
+        requestOptions
+      );
+      
+      if (response.ok) {
+        const result = await response.json();
         alert("Usuario registrado exitosamente");
-        console.log("Datos enviados:", response.data);
+        console.log("Datos enviados:", result);
 
         // Resetear el formulario
         setFormData({
@@ -60,6 +109,8 @@ const UsuariosAdmin = () => {
 
         // Ocultar el formulario después de registrar el usuario
         setShowForm(false);
+      } else {
+        throw new Error("Error en la respuesta del servidor");
       }
     } catch (error) {
       console.error("Error al registrar el usuario:", error);
@@ -147,10 +198,12 @@ const UsuariosAdmin = () => {
               type="submit"
               className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600"
             >
-              Agregar Usuario
+              Agregar usuario
             </Button>
           </form>
         </div>
+        
+        
       )}
     </div>
   );

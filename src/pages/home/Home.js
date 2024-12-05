@@ -36,8 +36,8 @@ export const Home = () => {
             alt="imagen general de un vehiculo"
           />
 
-          <div className="absolute inset-0 flex items-center justify-start pl-10 z-10">
-            <h1 className="text-white text-4xl font-bold">¡Donde tu viaje empieza con confianza!</h1>
+          <div className="absolute inset-0 flex items-center justify-center pl-4 md:pl-6 lg:pl-10 z-10">
+            <h1 className="text-white font-bold text-xl md:text-3xl lg:text-5xl text-center" style={{ fontFamily: 'Lobster, cursive' }}>¡Donde tu viaje empieza con confianza!</h1>
           </div>
         </div>
 

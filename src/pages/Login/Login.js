@@ -44,7 +44,7 @@ export const Login = () => {
             </div>
             <div className="p-4 space-y-4">
               <h1 className="h5 font-weight-bold text-dark">
-                Iniciar sesion en tu cuenta
+                Iniciar sesión en tu cuenta
               </h1>
               <LoginForm />
             </div>

@@ -8,11 +8,16 @@ const Sidebar = () => {
   const [transmision, setTransmision] = useState('');
   const [anio, setAnio] = useState('');
 
-  const {cars, setfilterescarsCars} = useAppContext()
+  const {cars, setfilterescarsCars,toastCall} = useAppContext()
 
   const handleSearch = async () => {
         const filterCars = cars.filter((item)=> item.modelo === modelo || item.marca === marca || item.transmision === transmision || item.year == anio)
-        setfilterescarsCars(filterCars.length > 0 ? filterCars : cars);
+        if(filterCars.length > 0){
+          setfilterescarsCars( filterCars );
+        }else{
+          setfilterescarsCars(cars );
+          toastCall("Vehiculo no encontrado")
+        }
        
   };
 

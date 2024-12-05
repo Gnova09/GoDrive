@@ -570,6 +570,7 @@ export const AppContextProvider = ({ children }) => {
   const [proveedor, setproveedor] = useState([]);
   const [newform, setnewform] = useState([]);
   const [users, setusers] = useState({});
+  const [usersAdmin, setusersAdmin] = useState({});
 
   //ComponentDidMouunt
   useEffect(() => { }, []);
@@ -646,20 +647,26 @@ export const AppContextProvider = ({ children }) => {
       redirect: "follow"
     };
 
-    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Usuario/login`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setIslogin(true)
-        setusers(result)
-        toastCall("Logged")
-        return true
-      })
-      .catch((error) => {
-        toastCall("Error en el login" + error)
-        return false
-      });
+    try {
+      const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Usuario/login`, requestOptions);
+      const result = await response.json();
 
-    return response
+      if (result.success) {
+        setIslogin(true);
+        setusersAdmin(result.data);
+        toastCall("Logged");
+        return true;
+      } else {
+        toastCall("Login failed");
+        return false;
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      toastCall("An error occurred");
+      return false;
+    }
+
+    
 
   }
 
@@ -762,15 +769,36 @@ export const AppContextProvider = ({ children }) => {
 
     const response = await fetch(`https://www.godrive.somee.com/api/Vehiculo/${id}`, requestOptions)
       .then((response) => response.json())
-      .then((result) => {return(result)})
+      .then((result) => { return (result) })
       .catch((error) => console.error(error));
 
 
-      if(response.success){
-        setCars(GetVehiculos())
-      }
-      return response
+    if (response.success) {
+      setCars(GetVehiculos())
+    }
+    return response
   }
+
+  const GetFacturas = async () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", usersAdmin.token || process.env.REACT_APP_TOKEN_BACKEND);
+    console.log(usersAdmin)
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+
+   const response = await fetch("https://www.godrive.somee.com/api/Factura", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {return(result)})
+      .catch((error) => console.error(error));
+
+    return response
+  }
+
+
+
   const values = {
     // Funciones que son exportadas para manejo externo.
     insertVehiculo,
@@ -806,7 +834,9 @@ export const AppContextProvider = ({ children }) => {
     RegistrarCliente,
     filterescars,
     setfilterescarsCars,
-    deleteVehiculo
+    deleteVehiculo,
+    GetFacturas,
+    setusersAdmin
   }; // States que serán visibles en el contexto.
 
   // Interface donde será expuesto como proveedor y envolverá la App.

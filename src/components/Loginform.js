@@ -53,29 +53,7 @@ function LoginForm() {
   </div>
 
   
-  <div className="text-center my-4">
-    <div className="d-flex align-items-center">
-      <hr 
-        className="flex-fill" 
-        style={{ 
-          border: '1px solid #8c8c8c', 
-          height: '1px',
-          flexGrow: 1,
-        }} 
-      />
-      
-      <span className="mx-2 text-black">O inicia sesión con</span>
-      <hr 
-        className="flex-fill" 
-        style={{ 
-          border: '1px solid #8c8c8c',
-          height: '1px',
-          flexGrow: 1,
-        }} 
-      />
-    </div>
-  </div>
-
+  
  
 
 
@@ -84,7 +62,7 @@ function LoginForm() {
   <button
     type="button"
     onClick={handleSubmitLogin}
-    className="btn btn-primary w-100 text-black"
+    className="btn btn-primary w-100 text-black mt-12"
   >
     Iniciar sesión
   </button>

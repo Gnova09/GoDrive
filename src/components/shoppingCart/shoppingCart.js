@@ -23,7 +23,7 @@ const ShoppingCart = ({ showCart }) => {
           console.log(carro)
           const response = await insertFactura({carro})
 
-          if(response.mensaje){
+          if(response?.mensaje){
             toastCall(`No se pudo Rentar ${carro.nombre} por ${response.mensaje}`)
           }
         })

@@ -614,9 +614,9 @@ export const AppContextProvider = ({ children }) => {
       const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Cliente/login`, requestOptions);
       const result = await response.json();
 
-      if (result.token) {
+      if (result.data) {
         setIslogin(true);
-        setusers(result);
+        setusers(result.data);
         toastCall("Logeado");
         return true;
       } else {
@@ -651,7 +651,7 @@ export const AppContextProvider = ({ children }) => {
       const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Usuario/login`, requestOptions);
       const result = await response.json();
 
-      if (result.token) {
+      if (result.data) {
         setIslogin(true);
         setusersAdmin(result.data);
         toastCall("Logeado");

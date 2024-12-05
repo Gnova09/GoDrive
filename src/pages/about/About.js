@@ -81,7 +81,7 @@ const About = () => {
       </div>
 
       {/* Contenedor para el video y el texto */}
-      <div className="flex items-start justify-start ml-10">
+      <div className="flex items-start justify-center  ">
         <div className="relative" style={{ marginTop: "180px" }}>
           <video
             ref={videoRef}
@@ -159,7 +159,7 @@ const About = () => {
 
       <div className="flex justify-center mb-20">
         <div
-          className="bg-[#DBE2EF] p-8"
+          className="bg-[#DBE2EF] px-8"
           style={{
             width: "1270px",
             height: "1015px",
@@ -264,7 +264,6 @@ const About = () => {
             className="text-4xl font-bold text-left"
             style={{
               marginBottom: "20px",
-              marginTop: "70px",
               fontFamily: "DINCond",
               color: "#112D4E",
             }}
@@ -383,14 +382,14 @@ const About = () => {
       )}
 
       {/* Contenedor de los cards del equipo de desarrollo */}
-      <div className="contenedordelascards">
+      <div className="flex justify-center">
         <div
-          className="bg-white text-black p-4"
+          className="bg-white text-black p-4 mb-4"
           style={{
             width: "1270px",
             height: "2240px",
             position: "relative",
-            top: "-750px",
+            
             right: "-40px",
             border: "1px solid #e7e7e9", 
           }}

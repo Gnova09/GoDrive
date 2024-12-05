@@ -614,10 +614,10 @@ export const AppContextProvider = ({ children }) => {
       const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Cliente/login`, requestOptions);
       const result = await response.json();
 
-      if (result.success) {
+      if (result.token) {
         setIslogin(true);
         setusers(result);
-        toastCall("Logged");
+        toastCall("Logeado");
         return true;
       } else {
         toastCall("Login failed");
@@ -651,10 +651,10 @@ export const AppContextProvider = ({ children }) => {
       const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Usuario/login`, requestOptions);
       const result = await response.json();
 
-      if (result.success) {
+      if (result.token) {
         setIslogin(true);
         setusersAdmin(result.data);
-        toastCall("Logged");
+        toastCall("Logeado");
         return true;
       } else {
         toastCall("Login failed");
@@ -725,29 +725,6 @@ export const AppContextProvider = ({ children }) => {
     return response
   }
 
-  const Getusuarios = async () => {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", `Bearer ${users.token || process.env.REACT_APP_TOKEN_ADMIN_BACKEND}`);
-
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow"
-    };
-
-    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Usuario/listado`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => { return result })
-      .catch((error) => {
-        toastCall("Error ")
-        return []
-      });
-
-    return response
-  }
-
-
   const insertVehiculo = async (vehiculo) => {
 
     const myHeaders = new Headers();
@@ -775,6 +752,28 @@ export const AppContextProvider = ({ children }) => {
         console.log(error)
         toastCall("Error en la creacion" + error)
         return false
+      });
+
+    return response
+  }
+
+  const Getusuarios = async () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${users.token || process.env.REACT_APP_TOKEN_ADMIN_BACKEND}`);
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Usuario/listado`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => { return result })
+      .catch((error) => {
+        toastCall("Error ")
+        return []
       });
 
     return response
@@ -859,7 +858,8 @@ export const AppContextProvider = ({ children }) => {
     setfilterescarsCars,
     deleteVehiculo,
     GetFacturas,
-    setusersAdmin
+    setusersAdmin,
+    Getusuarios
   }; // States que serán visibles en el contexto.
 
   // Interface donde será expuesto como proveedor y envolverá la App.

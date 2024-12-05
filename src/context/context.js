@@ -781,7 +781,7 @@ export const AppContextProvider = ({ children }) => {
 
   const deleteVehiculo = async (id) => {
     const myHeaders = new Headers();
-    myHeaders.append("Authorization", users.token);
+    myHeaders.append("Authorization", `Bearer ${users.token || process.env.REACT_APP_TOKEN_ADMIN_BACKEND}`);
 
     const requestOptions = {
       method: "DELETE",

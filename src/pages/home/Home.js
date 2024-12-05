@@ -47,21 +47,25 @@ export const Home = () => {
         <Sidebar />
         <div class="grid w-full items-center ml-3 justify-center grid-cols-3 gap-4 pt-2">
           {
-            cars.length > 0 ?
-            filterescars.map((carro) => {
-                const carroClean = {
-                  id:carro.id,
-                  img: carro.imagenes,
-                  precio: carro.costo_por_dia,
-                  nombre: `${carro.marca} ${carro.modelo} ${carro.year}`,
-                  descripcion: carro.descripcion,
-                  anio:carro.year,
-                  modelo: carro.modelo,
-                  marca: carro.marca
-                }
-                return <CardOfCars carro={carroClean} />
-              }) :
-              <h1>Cargando vehiculo</h1>
+            cars.length > 0 ? (
+              filterescars
+                .filter((carro) => !carro.rentado) // Excluye los carros rentados
+                .map((carro) => {
+                  const carroClean = {
+                    id: carro.id,
+                    img: carro.imagenes,
+                    precio: carro.costo_por_dia,
+                    nombre: `${carro.marca} ${carro.modelo} ${carro.year}`,
+                    descripcion: carro.descripcion,
+                    anio: carro.year,
+                    modelo: carro.modelo,
+                    marca: carro.marca,
+                  };
+                  return <CardOfCars carro={carroClean} />;
+                })
+            ) : 
+              <h1>Cargando vehículo</h1>
+            
           }
 
         </div>

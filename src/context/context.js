@@ -614,7 +614,7 @@ export const AppContextProvider = ({ children }) => {
       const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Cliente/login`, requestOptions);
       const result = await response.json();
 
-      if (result) {
+      if (result.token) {
         setIslogin(true);
         setusers(result);
         toastCall("Logged");

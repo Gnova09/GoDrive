@@ -12,7 +12,7 @@ const FacturaAdmin = () => {
 
         try {
           const facturas = await GetFacturas(); // Asegúrate de que GetVehiculos sea una función asíncrona.
-          setfactura(facturas);
+          setfactura(factura.data);
           console.log(facturas)
         } catch (error) {
           console.error('Error fetching vehiculos:', error);

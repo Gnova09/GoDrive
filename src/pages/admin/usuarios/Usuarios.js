@@ -76,7 +76,7 @@ const UsuariosAdmin = () => {
 
     try {
       const response = await fetch(
-        "http://www.godrive.somee.com/api/Usuario/registrar",
+        "https://www.godrive.somee.com/api/Usuario/registrar",
         requestOptions
       );
 

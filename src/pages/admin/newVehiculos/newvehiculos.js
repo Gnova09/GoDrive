@@ -7,7 +7,7 @@ const Newvehiculos = () => {
   const [showmodal, setshowmodal] = useState(false);
   const [costoPorDia, setCostoPorDia] = useState(""); // Estado para el costo por día
   const [row, setrow] = useState([]); // Estado para el costo por día
-  const { GetVehiculos, insertVehiculo } = useAppContext();
+  const { GetVehiculos, insertVehiculo, deleteVehiculo, toastCall,cars } = useAppContext();
   const [vehicleData, setVehicleData] = useState({
     matricula: "",
     marca: "",
@@ -41,7 +41,7 @@ const Newvehiculos = () => {
   }
   useEffect(() => {
     obtenervehiculos()
-  }, [])
+  }, [cars])
 
   /* const row = [
     { id: 1, marca: 'Toyota', modelo: 'Corolla', transmision: 'Automática', year: 2020, numero_Puertas: 4, numero_asientos: 5, costo_por_dia: 35 },
@@ -50,6 +50,11 @@ const Newvehiculos = () => {
     { id: 4, marca: 'Ford', modelo: 'Fiesta', transmision: 'Manual', year: 2018, numero_Puertas: 4, numero_asientos: 5, costo_por_dia: 30 },
     { id: 5, marca: 'Nissan', modelo: 'Versa', transmision: 'Automática', year: 2022, numero_Puertas: 4, numero_asientos: 5, costo_por_dia: 45 },
   ]; */
+
+  const handleDelete = async (row) =>{
+   const response = await deleteVehiculo(row.id)
+   response.success ?   toastCall('Eliminado') :   toastCall('No pudo ser eliminado')
+  }
   const column = [
     { field: 'id', headerName: 'Id', width: 80, },
     { field: 'marca', headerName: 'Marca', width: 130 },
@@ -59,23 +64,23 @@ const Newvehiculos = () => {
     { field: 'numero_Puertas', headerName: 'Puertas', width: 170 },
     { field: 'numero_asientos', headerName: 'Asientos', width: 170 },
     { field: 'costo_por_dia', headerName: 'Costo/dia', width: 170 },
-    /*  {
-         field: 'actions',
-         headerName: 'Descargar',
-         width: 100,
-         renderCell: (params) => (
-             <div className='flex items-center justify-center w-[100px]'>
+    {
+      field: 'actions',
+      headerName: 'Eliminar',
+      width: 100,
+      renderCell: (params) => (
+          <div className='flex items-center justify-center w-[100px]'>
 
-                 <button variant="contained"
-                     className='flex items-center w-8 h-8'
-                     color="primary" onClick={() => handleRowButton(params.row)}>
-                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"></path>
-                     </svg>
-                 </button>
-             </div>
-         ),
-     }, */
+              <button variant="contained"
+                  className='flex items-center hover:bg-red-700 rounded justify-center w-8 h-8'
+                  color="primary" onClick={() => handleDelete(params.row)}>
+                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
+                  </svg>
+              </button>
+          </div>
+      ),
+  }
   ]
 
 

@@ -30,7 +30,6 @@ const Details = () => {
 
   const car = detailCar
 
-  console.log(car)
 
   const handleNext = () => {
     setSelectedImage((prevIndex) => (prevIndex + 1) % car.img.length);
@@ -44,11 +43,13 @@ const Details = () => {
         {
           nombre: car.nombre,
           precio: car.precio,
-          img: car.img.lenght >0 ? car.img[0] : [],
+          img: car.img.length > 0 ? car.img : [],
           desde: dateFrom,
           hasta: dateTo,
         }
       ]
+      console.log(listOfCarts)
+      console.log("first")
       setLiscart(listOfCarts);
       toastCall(` ${car.nombre} agregado al carrito`);
     } else {

@@ -170,7 +170,6 @@ export const Register = () => {
         </div>
       </section>
 
-      {/* Imagen y Título */}
       <div className="col-6">
         <div className="d-flex justify-content-center align-items-center h-100 w-100 position-relative">
           <img

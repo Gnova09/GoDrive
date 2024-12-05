@@ -12,10 +12,10 @@ const FacturaAdmin = () => {
 
         try {
           const facturas = await GetFacturas(); // Asegúrate de que GetVehiculos sea una función asíncrona.
-          setfactura(factura.data);
+          setfactura(facturas.data);
           console.log(facturas)
         } catch (error) {
-          console.error('Error fetching vehiculos:', error);
+          console.error('Error fetching facturas:', error);
         }
       }
       useEffect(() => {
@@ -32,6 +32,7 @@ const FacturaAdmin = () => {
         { field: "subtotal", headerName: "Subtotal", width: 130 },
         { field: "monto_itbis", headerName: "Monto ITBIS", width: 130 },
         { field: "numero_factura", headerName: "Número de factura", width: 200 },
+        
       ];
     return (
         <div>

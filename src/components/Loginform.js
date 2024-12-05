@@ -84,7 +84,7 @@ function LoginForm() {
   <button
     type="button"
     onClick={handleSubmitLogin}
-    className="btn btn-primary w-100"
+    className="btn btn-primary w-100 text-black"
   >
     Iniciar sesión
   </button>

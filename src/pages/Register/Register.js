@@ -6,6 +6,7 @@ export const Register = () => {
   const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [pass, setpass] = useState("");
+  const [pass2, setpass2] = useState("");
   const [nombre, setnombre] = useState("");
   const [apellido, setapellido] = useState("");
   const [telefono, settelefono] = useState("");
@@ -19,6 +20,7 @@ export const Register = () => {
     const cliente = {
       email,
       pass,
+      pass2,
       nombre,
       apellido,
       telefono,
@@ -34,6 +36,7 @@ export const Register = () => {
     }
     //TODO: ENVIAR AL API DE BACKEND PARA QUE LO CREE
     toastCall("Registro completado ");
+    navigate("/");
   };
 
   return (
@@ -52,7 +55,7 @@ export const Register = () => {
           </a>
 
           <div className="w-100 bg-white rounded-lg shadow p-4">
-            <div className="p-4 space-y-4">
+            <div className="p-4 space-y-10">
               <h1 className="h5 font-weight-bold text-dark">Crear tu cuenta</h1>
 
 
@@ -69,30 +72,31 @@ export const Register = () => {
                       onChange={(e) => setnombre(e.target.value)}
                       name="floating_first_name"
                       id="floating_first_name"
-                      class="block py-2.5 px-0 w-full text-sm text-black bg-transparent  border-b-2 border-gray appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      class="block py-2.5 px-0 w-full text-sm text-black bg-transparent  border-b-2 border-black border rounded appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=""
                       required
                     />
                     <label
-                      for="floating_first_name"
-                      class="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Nombre
-                    </label>
-                  </div>
-                  <div class="relative z-0 w-full mb-5 group">
-                    <input
-                      type="text"
-                      onChange={(e) => setapellido(e.target.value)}
-                      name="floating_last_name"
-                      id="floating_last_name"
-                      class="block py-2.5 px-0 w-full text-sm text-black bg-transparent  border-b-2 border-gray appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=""
-                      required
-                    />
+                    for="floating_first_name"
+                    class="peer-focus:font-medium absolute pl-3 text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-10"
+                  >
+                    Nombre
+                  </label>
+                </div>
+                <div class="relative z-0 w-full mb-5 group">
+                  <input
+                    type="text"
+                    onChange={(e) => setapellido(e.target.value)}
+                    name="floating_last_name"
+                    id="floating_last_name"
+                    class="block py-2.5 px-0 w-full text-sm text-black bg-transparent  border-b-2 border-black border rounded appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=""
+                    required
+                  />
+
                     <label
                       for="floating_last_name"
-                      class="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                      class="peer-focus:font-medium absolute pl-3 text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-10"
                     >
                       Segundo nombre
                     </label>
@@ -105,13 +109,13 @@ export const Register = () => {
                     onChange={(e) => setemail(e.target.value)}
                     name="floating_email"
                     id="floating_email"
-                    class="block py-2.5 px-0 w-full text-sm text-black bg-transparent  border-b-2 border-gray appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    class="block py-2.5 px-0 w-full text-sm text-black bg-transparent  border-b-2 border-black border rounded appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=""
                     required
                   />
                   <label
                     for="floating_email"
-                    class="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    class="peer-focus:font-medium absolute pl-3 text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-10"
                   >
                     Dirección de correo electrónico
                   </label>
@@ -122,18 +126,16 @@ export const Register = () => {
                     name="tipo_identificacion"
                     id="tipo_identificacion"
                     onChange={(e) => settipoIdentificacion(e.target.value)}
-                    class="block py-2.5 px-0 w-full text-sm text-black bg-transparent  border-b-2 border-gray appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    class="block py-2.5 px-0 pl-3 w-full text-sm text-black bg-transparent  border-b-2 border-black border rounded appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     required
                   >
-                    <option value="" disabled selected>
-                      Tarjeta de identificación
-                    </option>
+                    <option value="" disabled selected>Selecciona un documento</option>
                     <option value="cedula">Cédula</option>
                     <option value="pasaporte">Pasaporte</option>
                   </select>
                   <label
                     for="tipo_identificacion"
-                    class="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    class="peer-focus:font-medium absolute pl-3 text-sm text-black dark:text-black duration-300 transform -translate-y-10 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-10"
                     style={{ fontSize: '18px' }} 
                   >
                     Tipo de documento
@@ -146,14 +148,14 @@ export const Register = () => {
                     onChange={(e) => setnumeroIdentificacion(e.target.value)}
                     name="numero_identificacion"
                     id="numero_identificacion"
-                    class="block py-2.5 px-0 w-full text-sm text-black bg-transparent  border-b-2 border-gray appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    class="block py-2.5 px-0 w-full text-sm text-black bg-transparent  border-b-2 border-black border rounded appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=""
-                    maxLength={11}
+                    maxLength={20}
                     required
                   />
                   <label
                     for="numero_identificacion"
-                    class="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    class="peer-focus:font-medium absolute pl-3 text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-10"
                   >
                     Número de documento
                   </label>
@@ -165,17 +167,19 @@ export const Register = () => {
                     onChange={(e) => setpass(e.target.value)}
                     name="floating_password"
                     id="floating_password"
-                    class="block py-2.5 px-0 w-full text-sm text-black bg-transparent  border-b-2 border-gray appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    class="block py-2.5 px-0 w-full text-sm text-black bg-transparent  border-b-2 border-black border rounded appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=""
                     required
                   />
                   <label
                     for="floating_password"
-                    class="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    class="peer-focus:font-medium absolute pl-3 text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-10"
                   >
                     Contraseña
                   </label>
                 </div>
+
+                
 
                 
 
@@ -188,7 +192,7 @@ export const Register = () => {
 
                 <p class="text-center mt-3">
                   ¿Ya tienes cuenta?{" "}
-                  <a href="/login" class="text-primary">
+                  <a href="/" class="text-primary">
                     Iniciar sesion
                   </a>
                 </p>

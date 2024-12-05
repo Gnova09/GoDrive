@@ -729,7 +729,7 @@ export const AppContextProvider = ({ children }) => {
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", users.token);
+    myHeaders.append("Authorization", users.token || process.env.REACT_APP_TOKEN_ADMIN_BACKEND);
 
     const raw = JSON.stringify(vehiculo);
 

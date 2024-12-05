@@ -50,6 +50,7 @@ export const Home = () => {
             cars.length > 0 ?
             filterescars.map((carro) => {
                 const carroClean = {
+                  id:carro.id,
                   img: carro.imagenes,
                   precio: carro.costo_por_dia,
                   nombre: `${carro.marca} ${carro.modelo} ${carro.year}`,

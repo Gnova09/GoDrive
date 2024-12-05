@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const CardOfCars = ({ carro }) => {
   const { liscart, setLiscart, toastCall, setdetailCar } = useAppContext();
   const navigate = useNavigate();
-  const {nombre, precio, img} = carro
+  const {nombre, precio, img, id} = carro
 
   // Estado para controlar la apertura del modal
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +36,7 @@ const CardOfCars = ({ carro }) => {
         const listOfCarts = [
           ...list,
           {
+            id: id ,
             nombre: nombre,
             precio: precio,
             img: img,

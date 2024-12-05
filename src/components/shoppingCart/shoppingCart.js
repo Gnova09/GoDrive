@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ShoppingCart = ({ showCart }) => {
 
-  const { verifyLogin, islogin, toastCall, liscart, setLiscart } = useAppContext()
+  const { verifyLogin, islogin, toastCall, liscart, setLiscart, insertFactura } = useAppContext()
   const navigate = useNavigate();
 
   const handleDeleteCar = (nombre) => {
@@ -19,6 +19,15 @@ const ShoppingCart = ({ showCart }) => {
     if (islogin) {
       if (liscart.length > 0) {
 
+        liscart.map(async(carro)=>{
+          console.log(carro)
+          const response = await insertFactura({carro})
+
+          if(response.mensaje){
+            toastCall(`No se pudo Rentar ${carro.nombre} por ${response.mensaje}`)
+          }
+        })
+
         showCart(false)
         setLiscart([])
         toastCall('Le llegara el Link de pago y la factura via correo')
@@ -30,6 +39,7 @@ const ShoppingCart = ({ showCart }) => {
     } else {
       toastCall('Debe iniciar sesion')
       navigate("/login")
+      
     }
   }
   return (

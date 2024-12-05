@@ -666,7 +666,7 @@ export const AppContextProvider = ({ children }) => {
       return false;
     }
 
-    
+
 
   }
 
@@ -801,9 +801,11 @@ export const AppContextProvider = ({ children }) => {
     return response
   }
 
+
+
   const GetFacturas = async () => {
     const myHeaders = new Headers();
-    myHeaders.append("Authorization", usersAdmin.token || process.env.REACT_APP_TOKEN_BACKEND);
+    myHeaders.append("Authorization", `Bearer ${usersAdmin.token || process.env.REACT_APP_TOKEN_BACKEND}`);
     console.log(usersAdmin)
     const requestOptions = {
       method: "GET",
@@ -811,14 +813,39 @@ export const AppContextProvider = ({ children }) => {
       redirect: "follow"
     };
 
-   const response = await fetch("https://www.godrive.somee.com/api/Factura", requestOptions)
+    const response = await fetch("https://www.godrive.somee.com/api/Factura", requestOptions)
       .then((response) => response.json())
-      .then((result) => {return(result)})
+      .then((result) => { return (result) })
       .catch((error) => console.error(error));
 
     return response
   }
 
+  const insertFactura = async ({carro}) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${usersAdmin.token || process.env.REACT_APP_TOKEN_BACKEND}`);
+
+    const raw = JSON.stringify({
+      "id_cliente": "623b1f08-70a9-4609-b311-5b103e26507e" ,
+      "fecha_creacion": new Date(),
+      "fecha_renta_inicio": carro.desde,
+      "fecha_renta_final": carro.hasta,
+      "vehiculo_id": carro.id
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    fetch("https://www.godrive.somee.com/api/Factura/facturar", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+  }
 
 
   const values = {
@@ -859,7 +886,8 @@ export const AppContextProvider = ({ children }) => {
     deleteVehiculo,
     GetFacturas,
     setusersAdmin,
-    Getusuarios
+    Getusuarios,
+    insertFactura
   }; // States que serán visibles en el contexto.
 
   // Interface donde será expuesto como proveedor y envolverá la App.

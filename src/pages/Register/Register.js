@@ -29,6 +29,8 @@ export const Register = () => {
     if(responseCreateCliente.success === true){
 
       navigate("/login");
+    }else{
+      toastCall('Error en el login')
     }
     //TODO: ENVIAR AL API DE BACKEND PARA QUE LO CREE
     toastCall("Registro completado ");

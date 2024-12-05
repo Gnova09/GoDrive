@@ -195,17 +195,9 @@ export const Register = () => {
           </div>
         </div>
 
-        <span className="text-muted small text-center d-block mt-3">
-          © 2024{" "}
-          <a
-            href="https://github.com/Gnova09"
-            className="text-decoration-underline"
-          >
-            DevNova™
-          </a>
-          . All Rights Reserved. VERSION 1.0.4
-        </span>
+        
       </section>
+      {/* Imagen y Título */}
       <div className="col-6">
         <div className="d-flex justify-content-center align-items-center h-100 w-100 position-relative">
           <img

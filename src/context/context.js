@@ -725,29 +725,6 @@ export const AppContextProvider = ({ children }) => {
     return response
   }
 
-  const Getusuarios = async () => {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", `Bearer ${users.token || process.env.REACT_APP_TOKEN_ADMIN_BACKEND}`);
-
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow"
-    };
-
-    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/Usuario/listado`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => { return result })
-      .catch((error) => {
-        toastCall("Error ")
-        return []
-      });
-
-    return response
-  }
-
-
   const insertVehiculo = async (vehiculo) => {
 
     const myHeaders = new Headers();

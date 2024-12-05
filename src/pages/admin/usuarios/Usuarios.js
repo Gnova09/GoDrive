@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TextInput, Button, Label } from "flowbite-react";
 import DataTable from "../../../components/table/DataTable";
-import useAppContext from "../../../context/context"; // Importar el contexto
+import axios from "axios";
 
 const UsuariosAdmin = () => {
-  const { users,Getusuarios } = useAppContext(); // Obtener el token del contexto
   const [showForm, setShowForm] = useState(false); // Estado para mostrar u ocultar el formulario
-  const [row, setrow] = useState(false); // Estado para mostrar u ocultar el formulario
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -14,27 +12,13 @@ const UsuariosAdmin = () => {
     password: "",
   });
 
-  
-
-  const obtenervehiculos = async () => {
-    try {
-      const usuarios = await Getusuarios(); 
-      setrow( usuarios.map((item, index) => ({
-        id: index + 1,
-        Nombre: item.nombre,
-        Apellido: item.apellido,
-        Email: item.email,
-        Username: item.userName.split('@')[0], // Extraer solo el nombre de usuario
-        Fechaderegistro: item.fecha_registro.split('T')[0] // Solo la fecha
-    })))
-    } catch (error) {
-      console.log(error)
-    }
-
-  }
-  useEffect(() => {
-    obtenervehiculos()
-  }, [])
+  const row = [
+    { id: 1, Nombre: 'Brayan', Apellido: 'Pérez', Email: 'Brayanperez01@gmail.com', Username: 'Brayanperez01', Fechaderegistro: '2022-01-01' },
+    { id: 2, Nombre: 'George', Apellido: 'González', Email: 'Georgegonzales12@gmail.com', Username: 'Georgegonzales12', Fechaderegistro: '2022-01-02' },
+    { id: 3, Nombre: 'Cesar', Apellido: 'López', Email: 'Cesarlopez99@gmail.com', Username: 'Cesarlopez99', Fechaderegistro: '2022-01-03' },
+    { id: 4, Nombre: 'Justin', Apellido: 'Rodríguez', Email: 'Justinrodriguezzz@gmail.com', Username: 'Justinrodriguezzz', Fechaderegistro: '2022-01-04' },
+    { id: 5, Nombre: 'Hermes', Apellido: 'Mateo', Email: 'Hermesmateo0123@gmail.com', Username: 'Hermesmateo0123', Fechaderegistro: '2022-01-05' },
+  ];
 
   const column = [
     { field: 'id', headerName: 'ID', width: 170 },
@@ -55,35 +39,16 @@ const UsuariosAdmin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${users.token}`); // Incluir el token desde el contexto
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({
-      nombre: formData.nombre,
-      apellido: formData.apellido,
-      correo: formData.correo,
-      password: formData.password,
-    });
-
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
     try {
-      const response = await fetch(
-        "http://www.godrive.somee.com/api/Usuario/registrar",
-        requestOptions
-      );
+      const response = await axios.post("http://www.godrive.somee.com/api/Usuario/registrar", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-      if (response.ok) {
-        const result = await response.json();
+      if (response.status === 200 || response.status === 201) {
         alert("Usuario registrado exitosamente");
-        console.log("Datos enviados:", result);
+        console.log("Datos enviados:", response.data);
 
         // Resetear el formulario
         setFormData({
@@ -95,8 +60,6 @@ const UsuariosAdmin = () => {
 
         // Ocultar el formulario después de registrar el usuario
         setShowForm(false);
-      } else {
-        throw new Error("Error en la respuesta del servidor");
       }
     } catch (error) {
       console.error("Error al registrar el usuario:", error);
@@ -109,9 +72,7 @@ const UsuariosAdmin = () => {
       {/* Tabla de Usuarios */}
       <div className="w-full px-5 text-center">
         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Usuarios</h2>
-        {row.length > 0 ?
-        <DataTable className="text-black" column={column} row={row} /> :
-        <h1>Cargando los Usuarios</h1>}
+        <DataTable className="text-black" column={column} row={row} />
       </div>
 
       {/* Botón para agregar usuario */}
@@ -186,12 +147,10 @@ const UsuariosAdmin = () => {
               type="submit"
               className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600"
             >
-              Agregar usuario
+              Agregar Usuario
             </Button>
           </form>
         </div>
-
-
       )}
     </div>
   );

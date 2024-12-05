@@ -19,7 +19,7 @@ function LoginForm() {
   return (
 
     <form className="mb-4" style={{ height: '330px' }}>    {/* Aquí añadí los estilos para definir la altura del login */}
-  <div className="mb-3">
+  <div className="mb-3 text-black">
     <label htmlFor="email" className="form-label">       
 
       Correo Electrónico
@@ -36,7 +36,7 @@ function LoginForm() {
     />
   </div>
 
-  <div className="mb-3">
+  <div className="mb-3 text-black">
     <label htmlFor="password" className="form-label">
       Contraseña
     </label>
@@ -64,7 +64,7 @@ function LoginForm() {
         }} 
       />
       
-      <span className="mx-2">O inicia sesión con</span>
+      <span className="mx-2 text-black">O inicia sesión con</span>
       <hr 
         className="flex-fill" 
         style={{ 
@@ -79,22 +79,7 @@ function LoginForm() {
  
 
 
-  <div className="d-flex justify-content-between align-items-center mb-3">
-    <div className="form-check">
-      <input
-        id="remember"
-        type="checkbox"
-        className="form-check-input"
-        required
-      />
-      <label htmlFor="remember" className="form-check-label">
-        Recordarme
-      </label>
-    </div>
-    <a href="/" className="text-primary">
-      Has olvidado la contraseña?
-    </a>
-  </div>
+  
 
   <button
     type="button"

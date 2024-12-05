@@ -617,7 +617,7 @@ export const AppContextProvider = ({ children }) => {
       if (result.token) {
         setIslogin(true);
         setusers(result);
-        toastCall("Logged");
+        toastCall("Logeado");
         return true;
       } else {
         toastCall("Login failed");
@@ -654,7 +654,7 @@ export const AppContextProvider = ({ children }) => {
       if (result.token) {
         setIslogin(true);
         setusersAdmin(result.data);
-        toastCall("Logged");
+        toastCall("Logeado");
         return true;
       } else {
         toastCall("Login failed");
